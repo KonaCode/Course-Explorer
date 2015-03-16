@@ -17,6 +17,8 @@
 		949A54C91AAD576E00FE6187 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 949A54C81AAD576E00FE6187 /* LoginController.m */; };
 		949A54CC1AAD5ABF00FE6187 /* LoginErrorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 949A54CB1AAD5ABF00FE6187 /* LoginErrorController.m */; };
 		949A54CF1AAD5BA200FE6187 /* ProgramsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 949A54CE1AAD5BA200FE6187 /* ProgramsController.m */; };
+		94F60BEC1AB69BF400DB3BE3 /* Program.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F60BEB1AB69BF400DB3BE3 /* Program.m */; };
+		94F60BEF1AB69C0100DB3BE3 /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F60BEE1AB69C0100DB3BE3 /* XMLParser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,10 @@
 		949A54CB1AAD5ABF00FE6187 /* LoginErrorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginErrorController.m; sourceTree = "<group>"; };
 		949A54CD1AAD5BA200FE6187 /* ProgramsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramsController.h; sourceTree = "<group>"; };
 		949A54CE1AAD5BA200FE6187 /* ProgramsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramsController.m; sourceTree = "<group>"; };
+		94F60BEA1AB69BF400DB3BE3 /* Program.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Program.h; sourceTree = "<group>"; };
+		94F60BEB1AB69BF400DB3BE3 /* Program.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Program.m; sourceTree = "<group>"; };
+		94F60BED1AB69C0100DB3BE3 /* XMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParser.h; sourceTree = "<group>"; };
+		94F60BEE1AB69C0100DB3BE3 /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +110,10 @@
 				949A54CB1AAD5ABF00FE6187 /* LoginErrorController.m */,
 				949A54CD1AAD5BA200FE6187 /* ProgramsController.h */,
 				949A54CE1AAD5BA200FE6187 /* ProgramsController.m */,
+				94F60BEA1AB69BF400DB3BE3 /* Program.h */,
+				94F60BEB1AB69BF400DB3BE3 /* Program.m */,
+				94F60BED1AB69C0100DB3BE3 /* XMLParser.h */,
+				94F60BEE1AB69C0100DB3BE3 /* XMLParser.m */,
 			);
 			path = "Course Explorer";
 			sourceTree = "<group>";
@@ -236,7 +246,9 @@
 			files = (
 				949A54AA1AAD4F9F00FE6187 /* ViewController.m in Sources */,
 				949A54C91AAD576E00FE6187 /* LoginController.m in Sources */,
+				94F60BEC1AB69BF400DB3BE3 /* Program.m in Sources */,
 				949A54CF1AAD5BA200FE6187 /* ProgramsController.m in Sources */,
+				94F60BEF1AB69C0100DB3BE3 /* XMLParser.m in Sources */,
 				949A54CC1AAD5ABF00FE6187 /* LoginErrorController.m in Sources */,
 				949A54A71AAD4F9F00FE6187 /* AppDelegate.m in Sources */,
 				949A54A41AAD4F9F00FE6187 /* main.m in Sources */,
@@ -432,6 +444,7 @@
 				949A54C31AAD4F9F00FE6187 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		949A54C41AAD4F9F00FE6187 /* Build configuration list for PBXNativeTarget "Course ExplorerTests" */ = {
 			isa = XCConfigurationList;
@@ -440,6 +453,7 @@
 				949A54C61AAD4F9F00FE6187 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
