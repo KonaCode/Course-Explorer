@@ -6,15 +6,21 @@ android {
 
     defaultConfig {
         applicationId "com.konacode.courseexplorer"
+        versionCode 1
+        versionName "beta-" + getDate() + "w2"
         minSdkVersion 21
         targetSdkVersion 21
-        versionCode 1
-        versionName "1.0"
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    def file = output.outputFile
+                    output.outputFile = new File(file.parent, file.name.replace("-release", "-" + getDate()))
+                }
+            }
         }
     }
 }
@@ -24,4 +30,10 @@ dependencies {
     compile 'com.android.support:support-v13:21.0.3'
     compile 'com.google.android.gms:play-services:6.1.71'
     compile 'com.android.support:appcompat-v7:21.0.3'
+}
+
+def getDate() {
+    def date = new Date()
+    def formattedDate = date.format('yyyyMMddHHmmss')
+    return formattedDate
 }

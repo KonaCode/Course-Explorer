@@ -15,10 +15,11 @@ import android.view.ViewGroup;
 import android.os.Build;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 
 public class ProgramsActivity extends Activity
 {
-
    @Override
    protected void onCreate(Bundle savedInstanceState)
    {
@@ -28,13 +29,15 @@ public class ProgramsActivity extends Activity
       getActionBar().setDisplayHomeAsUpEnabled(true);
    }
 
-
    @Override
    public boolean onCreateOptionsMenu(Menu menu)
    {
+      boolean result = true;
+
       // Inflate the menu; this adds items to the action bar if it is present.
       getMenuInflater().inflate(R.menu.menu_programs, menu);
-      return true;
+
+      return result;
    }
 
    @Override
@@ -79,7 +82,6 @@ public class ProgramsActivity extends Activity
     */
    public static class PlaceholderFragment extends Fragment
    {
-
       public PlaceholderFragment()
       {
       }
@@ -89,6 +91,7 @@ public class ProgramsActivity extends Activity
                                Bundle savedInstanceState)
       {
          View rootView = inflater.inflate(R.layout.fragment_programs, container, false);
+
          return rootView;
       }
    }
