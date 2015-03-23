@@ -47,6 +47,12 @@
             android:name=".ProgramsActivity"
             android:label="@string/title_activity_programs" >
         </activity>
+
+        <service
+            android:name=".TaskProcessorService"
+            android:label="@string/task_service_name">
+        </service>
+
     </application>
 
 </manifest>
