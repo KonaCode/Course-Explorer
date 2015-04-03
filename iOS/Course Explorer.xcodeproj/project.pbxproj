@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E5581C1C1B0B87EB96D0D6B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 384393720E58FA9311BF0FC4 /* libPods.a */; };
+		9421756A1ACD9B26000D9BBA /* ProgramModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 942175681ACD9B26000D9BBA /* ProgramModel.xcdatamodeld */; };
+		942175701ACD9BE8000D9BBA /* CourseModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9421756E1ACD9BE8000D9BBA /* CourseModel.xcdatamodeld */; };
+		942175761ACD9C92000D9BBA /* Program.m in Sources */ = {isa = PBXBuildFile; fileRef = 942175751ACD9C92000D9BBA /* Program.m */; };
+		942175791ACD9CA1000D9BBA /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = 942175781ACD9CA1000D9BBA /* Course.m */; };
 		949A54A41AAD4F9F00FE6187 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 949A54A31AAD4F9F00FE6187 /* main.m */; };
 		949A54A71AAD4F9F00FE6187 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 949A54A61AAD4F9F00FE6187 /* AppDelegate.m */; };
 		949A54AA1AAD4F9F00FE6187 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 949A54A91AAD4F9F00FE6187 /* ViewController.m */; };
@@ -30,6 +35,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		10638A92CA2271F04DCFF8B9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		384393720E58FA9311BF0FC4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B74F3455242A0E71806F0F9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		942175691ACD9B26000D9BBA /* ProgramModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ProgramModel.xcdatamodel; sourceTree = "<group>"; };
+		9421756F1ACD9BE8000D9BBA /* CourseModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CourseModel.xcdatamodel; sourceTree = "<group>"; };
+		942175741ACD9C92000D9BBA /* Program.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Program.h; sourceTree = "<group>"; };
+		942175751ACD9C92000D9BBA /* Program.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Program.m; sourceTree = "<group>"; };
+		942175771ACD9CA1000D9BBA /* Course.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Course.h; sourceTree = "<group>"; };
+		942175781ACD9CA1000D9BBA /* Course.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Course.m; sourceTree = "<group>"; };
 		949A549E1AAD4F9F00FE6187 /* Course Explorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Course Explorer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		949A54A21AAD4F9F00FE6187 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		949A54A31AAD4F9F00FE6187 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -56,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E5581C1C1B0B87EB96D0D6B /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,12 +84,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9175D289A165114935867646 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				384393720E58FA9311BF0FC4 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9421757A1ACDA4ED000D9BBA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				942175681ACD9B26000D9BBA /* ProgramModel.xcdatamodeld */,
+				9421756E1ACD9BE8000D9BBA /* CourseModel.xcdatamodeld */,
+				942175741ACD9C92000D9BBA /* Program.h */,
+				942175751ACD9C92000D9BBA /* Program.m */,
+				942175771ACD9CA1000D9BBA /* Course.h */,
+				942175781ACD9CA1000D9BBA /* Course.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		949A54951AAD4F9F00FE6187 = {
 			isa = PBXGroup;
 			children = (
 				949A54A01AAD4F9F00FE6187 /* Course Explorer */,
 				949A54BA1AAD4F9F00FE6187 /* Course ExplorerTests */,
 				949A549F1AAD4F9F00FE6187 /* Products */,
+				EC29BBBFC98107EBE29CE25D /* Pods */,
+				9175D289A165114935867646 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,6 +128,7 @@
 		949A54A01AAD4F9F00FE6187 /* Course Explorer */ = {
 			isa = PBXGroup;
 			children = (
+				9421757A1ACDA4ED000D9BBA /* Model */,
 				949A54A51AAD4F9F00FE6187 /* AppDelegate.h */,
 				949A54A61AAD4F9F00FE6187 /* AppDelegate.m */,
 				949A54A81AAD4F9F00FE6187 /* ViewController.h */,
@@ -134,6 +173,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		EC29BBBFC98107EBE29CE25D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				10638A92CA2271F04DCFF8B9 /* Pods.debug.xcconfig */,
+				3B74F3455242A0E71806F0F9 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -141,9 +189,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 949A54C11AAD4F9F00FE6187 /* Build configuration list for PBXNativeTarget "Course Explorer" */;
 			buildPhases = (
+				FD555BB288FF3FD252EAA524 /* Check Pods Manifest.lock */,
 				949A549A1AAD4F9F00FE6187 /* Sources */,
 				949A549B1AAD4F9F00FE6187 /* Frameworks */,
 				949A549C1AAD4F9F00FE6187 /* Resources */,
+				D833B3680DDBF08DDF05E8B3 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -229,6 +279,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		D833B3680DDBF08DDF05E8B3 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FD555BB288FF3FD252EAA524 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		949A549A1AAD4F9F00FE6187 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -237,8 +320,12 @@
 				949A54AA1AAD4F9F00FE6187 /* ViewController.m in Sources */,
 				949A54C91AAD576E00FE6187 /* LoginController.m in Sources */,
 				949A54CF1AAD5BA200FE6187 /* ProgramsController.m in Sources */,
+				942175761ACD9C92000D9BBA /* Program.m in Sources */,
+				942175791ACD9CA1000D9BBA /* Course.m in Sources */,
 				949A54CC1AAD5ABF00FE6187 /* LoginErrorController.m in Sources */,
+				942175701ACD9BE8000D9BBA /* CourseModel.xcdatamodeld in Sources */,
 				949A54A71AAD4F9F00FE6187 /* AppDelegate.m in Sources */,
+				9421756A1ACD9B26000D9BBA /* ProgramModel.xcdatamodeld in Sources */,
 				949A54A41AAD4F9F00FE6187 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -361,6 +448,7 @@
 		};
 		949A54C21AAD4F9F00FE6187 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 10638A92CA2271F04DCFF8B9 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Course Explorer/Info.plist";
@@ -371,6 +459,7 @@
 		};
 		949A54C31AAD4F9F00FE6187 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B74F3455242A0E71806F0F9 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Course Explorer/Info.plist";
@@ -432,6 +521,7 @@
 				949A54C31AAD4F9F00FE6187 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		949A54C41AAD4F9F00FE6187 /* Build configuration list for PBXNativeTarget "Course ExplorerTests" */ = {
 			isa = XCConfigurationList;
@@ -440,8 +530,32 @@
 				949A54C61AAD4F9F00FE6187 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		942175681ACD9B26000D9BBA /* ProgramModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				942175691ACD9B26000D9BBA /* ProgramModel.xcdatamodel */,
+			);
+			currentVersion = 942175691ACD9B26000D9BBA /* ProgramModel.xcdatamodel */;
+			path = ProgramModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		9421756E1ACD9BE8000D9BBA /* CourseModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9421756F1ACD9BE8000D9BBA /* CourseModel.xcdatamodel */,
+			);
+			currentVersion = 9421756F1ACD9BE8000D9BBA /* CourseModel.xcdatamodel */;
+			path = CourseModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 949A54961AAD4F9F00FE6187 /* Project object */;
 }

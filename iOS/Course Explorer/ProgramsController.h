@@ -6,8 +6,13 @@
 //  Copyright (c) 2015 Ryan Wing. All rights reserved.
 //
 
+#import <CoreData/CoreData.h>
 #import <UIKit/UIKit.h>
 
-@interface ProgramsController : UITableViewController
+@interface ProgramsController : UITableViewController<NSFetchedResultsControllerDelegate>
+
+@property (nonatomic, retain) UIAlertView* alert;
+@property (nonatomic, retain) NSFetchedResultsController* fetchedResultsController;
+@property (nonatomic, retain) NSArray* objects;
 
 @end
