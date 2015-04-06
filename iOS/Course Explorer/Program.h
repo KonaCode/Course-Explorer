@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-
 @interface Program : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * program_id;
-@property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSNumber* program_id;
+@property (nonatomic, retain) NSString* title;
+@property (nonatomic, retain) NSMutableArray* courses;
 
 @end

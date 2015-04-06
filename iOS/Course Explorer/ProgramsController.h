@@ -12,7 +12,7 @@
 @interface ProgramsController : UITableViewController<NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, retain) UIAlertView* alert;
-@property (nonatomic, retain) NSFetchedResultsController* fetchedResultsController;
 @property (nonatomic, retain) NSArray* objects;
+@property (nonatomic, retain) NSArray* programsWithCourses;
 
 @end

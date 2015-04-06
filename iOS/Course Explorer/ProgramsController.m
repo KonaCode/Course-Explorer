@@ -26,58 +26,29 @@
 BOOL requestBusy;
 
 @synthesize alert = _alert;
-@synthesize fetchedResultsController = _fetchedResultsController;
 @synthesize objects = _objects;
+@synthesize programsWithCourses = _programsWithCourses;
 
 - (void)viewDidLoad
 {
    [super viewDidLoad];
-   [self initializeRestKit];
-   [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"ProgramCell"];
-   
-   requestBusy = false;
-   
+
    // Uncomment the following line to preserve selection between presentations.
    // self.clearsSelectionOnViewWillAppear = NO;
     
    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
+   [self initializeRestKit];
+   [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"ProgramCell"];
+   
+   requestBusy = false;
 }
 
 - (void)didReceiveMemoryWarning
 {
-   [super didReceiveMemoryWarning];
    // Dispose of any resources that can be recreated.
-}
-
-- (BOOL)refresh
-{
-   BOOL result = true;
-   
-   if(result)
-   {
-      self.alert.title = @"Retrieve Programs Status";
-      self.alert.message = @"Contacting Server...";
-   }
-
-   [self.alert show];
-
-   if(result)
-   {
-   }
-   
-   if(result)
-   {
-      self.alert.message = @"Success";
-   }
-   else
-   {
-      self.alert.message = @"Retrieve Failed";
-      
-      NSLog(@"%@", self.alert.message);
-   }
-   
-   return result;
+   [super didReceiveMemoryWarning];
 }
 
 - (UIAlertView*)alert
@@ -90,27 +61,6 @@ BOOL requestBusy;
    return _alert;
 }
 
-- (NSFetchedResultsController*)fetchedResultsController
-{
-   if(!_fetchedResultsController)
-   {
-      NSError* error = nil;
-      NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([Program class])];
-      
-      fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"program.title" ascending:YES]];
-      
-      self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[RKManagedObjectStore defaultStore].mainQueueManagedObjectContext sectionNameKeyPath:@"program.title" cacheName:@"Program"];
-      self.fetchedResultsController.delegate = self;
-      
-      [self.fetchedResultsController performFetch:&error];
-
-      NSAssert(!error, @"Error performing fetch request: %@", error);
-   }
-   
-   
-   return _fetchedResultsController;
-}
-
 - (NSArray*)objects
 {
    if(!_objects)
@@ -120,17 +70,21 @@ BOOL requestBusy;
 
    if(([_objects count] == 0) && !requestBusy)
    {
-      NSDictionary* queryParams = nil;
+      NSDictionary* requestParams = nil;
 
       requestBusy = true;
 
-      [[RKObjectManager sharedManager] getObjectsAtPath:@"/Regis2/webresources/regis2.program" parameters:queryParams
+      self.alert.title = @"Retrieve Programs Status";
+      self.alert.message = @"Contacting Server...";
+      [self.alert show];
+
+      [[RKObjectManager sharedManager] getObjectsAtPath:@"/Regis2/webresources/regis2.program" parameters:requestParams
       success:^(RKObjectRequestOperation* operation, RKMappingResult* mappingResult)
       {
-         _objects = mappingResult.array;
+//         _objects = mappingResult.array;
 
-         [self.tableView reloadData];
-         [self.alert dismissWithClickedButtonIndex:0 animated:YES];
+//         [self.tableView reloadData];
+//         [self.alert dismissWithClickedButtonIndex:0 animated:YES];
 
          NSLog(@"Objects: %@", self.objects);
          
@@ -140,30 +94,125 @@ BOOL requestBusy;
       {
          self.alert.title = @"Error";
          self.alert.message = [NSString stringWithFormat:@"%@", error];
-         [self.alert show];
+
+         NSLog(@"Error: %@", error);
+
+         requestBusy = false;
+      }];
+
+      [[RKObjectManager sharedManager] getObjectsAtPath:@"/Regis2/webresources/regis2.course" parameters:requestParams
+      success:^(RKObjectRequestOperation* operation, RKMappingResult* mappingResult)
+       {
+          _objects = mappingResult.array;
+          
+          [self.tableView reloadData];
+          [self.alert dismissWithClickedButtonIndex:0 animated:YES];
+          
+          NSLog(@"Objects: %@", self.objects);
+          
+          requestBusy = false;
+       }
+       failure:^(RKObjectRequestOperation* operation, NSError* error)
+       {
+          self.alert.title = @"Error";
+          self.alert.message = [NSString stringWithFormat:@"%@", error];
+          
+          NSLog(@"Error: %@", error);
+          
+          requestBusy = false;
+       }];
+   }
+
+   return _objects;
+}
+
+- (NSArray*)programsWithCourses
+{
+   if(!_programsWithCourses)
+   {
+      _programsWithCourses = [[NSArray alloc] init];
+   }
+
+   if(([_programsWithCourses count] == 0) && !requestBusy)
+   {
+      NSDictionary* requestParams = nil;
+      
+      requestBusy = true;
+      
+      self.alert.title = @"SCIS Information";
+      self.alert.message = @"Retrieving Programs...";
+      [self.alert show];
+      
+      [[RKObjectManager sharedManager] getObjectsAtPath:@"/Regis2/webresources/regis2.program" parameters:requestParams
+      success:^(RKObjectRequestOperation* operation, RKMappingResult* mappingResult)
+      {
+         self.alert.message = @"Retrieving Courses...";
+
+         _programsWithCourses = mappingResult.array;
+
+         NSLog(@"Programs: %@", self.programsWithCourses);
+
+         [[RKObjectManager sharedManager] getObjectsAtPath:@"/Regis2/webresources/regis2.course" parameters:requestParams
+         success:^(RKObjectRequestOperation* operation, RKMappingResult* mappingResult)
+         {
+            for(Course* course in mappingResult.array)
+            {
+               for(Program* program in _programsWithCourses)
+               {
+                  if([program.program_id intValue] == [course.program_id intValue])
+                  {
+                     [program.courses addObject:course];
+
+                     break;
+                  }
+               }
+            }
+            
+            [self.tableView reloadData];
+            [self.alert dismissWithClickedButtonIndex:0 animated:YES];
+
+            NSLog(@"Programs With Courses: %@", self.objects);
+
+            requestBusy = false;
+         }
+         failure:^(RKObjectRequestOperation* operation, NSError* error)
+         {
+            [self.tableView reloadData];
+            self.alert.title = @"Error";
+            self.alert.message = [NSString stringWithFormat:@"%@", error];
+
+            NSLog(@"Error: %@", error);
+
+            requestBusy = false;
+         }];
+      }
+      failure:^(RKObjectRequestOperation* operation, NSError* error)
+      {
+         self.alert.title = @"Error";
+         self.alert.message = [NSString stringWithFormat:@"%@", error];
 
          NSLog(@"Error: %@", error);
 
          requestBusy = false;
       }];
    }
-
-   return _objects;
+   
+   return _programsWithCourses;
 }
 
 - (void)initializeRestKit
 {
-   BOOL useManagedObjectContext = false;
+   BOOL useManagedObjectContext = true;
    BOOL useHTTPClient = false;
-   BOOL useCustom = true;
+   BOOL useCustom = false;
    
    if(useManagedObjectContext)
    {
-      RKObjectManager* manager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://regisscis.net/Regis2/webresources"]];
+      RKObjectManager* objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://regisscis.net"]];
       NSManagedObjectModel* objectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
       RKManagedObjectStore* objectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:objectModel];
       
-      manager.managedObjectStore = objectStore;
+      objectManager.managedObjectStore = objectStore;
       
       // Create a map for the program class
       RKEntityMapping* programMapping = [RKEntityMapping mappingForEntityForName:NSStringFromClass([Program class]) inManagedObjectStore:objectStore];
@@ -175,7 +224,7 @@ BOOL requestBusy;
       RKEntityMapping* courseMapping = [RKEntityMapping mappingForEntityForName:NSStringFromClass([Course class]) inManagedObjectStore:objectStore];
       
       courseMapping.identificationAttributes = @[ @"course_id", @"title", @"program_id", @"program_title" ];
-      [courseMapping addAttributeMappingsFromDictionary:@{ @"id": @"course_id", @"name": @"title", @"program_id": @"program_id", @"program_title": @"program_title" }];
+      [courseMapping addAttributeMappingsFromDictionary:@{ @"id": @"course_id", @"name": @"title", @"pid.id": @"program_id", @"pid.name": @"program_title" }];
       
       // Create the persistence store
       [objectStore createPersistentStoreCoordinator];
@@ -191,6 +240,15 @@ BOOL requestBusy;
       
       [objectStore createManagedObjectContexts];
       objectStore.managedObjectCache = [[RKInMemoryManagedObjectCache alloc] initWithManagedObjectContext:objectStore.persistentStoreManagedObjectContext];
+
+      NSString* keyPath = nil;
+      RKResponseDescriptor* programsResponseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:programMapping method:RKRequestMethodGET pathPattern:@"/Regis2/webresources/regis2.program" keyPath:keyPath statusCodes:[NSIndexSet indexSetWithIndex:200]];
+      RKResponseDescriptor* coursesResponseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:courseMapping method:RKRequestMethodGET pathPattern:@"/Regis2/webresources/regis2.course" keyPath:keyPath statusCodes:[NSIndexSet indexSetWithIndex:200]];
+      
+      [objectManager setAcceptHeaderWithMIMEType:RKMIMETypeJSON];
+      [objectManager setRequestSerializationMIMEType:RKMIMETypeJSON];
+      [objectManager addResponseDescriptor:programsResponseDescriptor];
+      [objectManager addResponseDescriptor:coursesResponseDescriptor];
    }
 
    if(useCustom)
@@ -209,9 +267,6 @@ BOOL requestBusy;
       [objectManager setRequestSerializationMIMEType:RKMIMETypeJSON];
       
       // Create a map for the program class
-//      RKEntityMapping* programMapping = [RKEntityMapping mappingForEntityForName:NSStringFromClass([Program class]) inManagedObjectStore:objectStore];
-      
-//      programMapping.identificationAttributes = @[ @"program_id", @"title" ];
       [programMapping addAttributeMappingsFromDictionary:@{ @"id": @"program_id", @"name": @"title" }];
 
       RKResponseDescriptor* responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:programMapping method:RKRequestMethodGET pathPattern:@"/Regis2/webresources/regis2.program" keyPath:keyPath statusCodes:[NSIndexSet indexSetWithIndex:200]];
@@ -241,48 +296,51 @@ BOOL requestBusy;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView
 {
-   NSInteger result = 0;
+   NSInteger result = [self.programsWithCourses count];
    
-   if([self.objects count] > 0)
-   {
-      result = 1;
-   }
-
    // Return the number of sections.
    return result;
 }
 
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
-   NSInteger result = [self.objects count];
+   Program* program = self.programsWithCourses[section];
+   NSInteger result = [program.courses count];
 
    // Return the number of rows in the section.
    return result;
 }
 
+- (NSString*)tableView:(UITableView*)tableView titleForHeaderInSection:(NSInteger)section
+{
+   Program* program = self.programsWithCourses[section];
+   NSString* result = [program description];
+   
+   return result;
+}
+
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-   UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"ProgramCell" forIndexPath:indexPath];
-   
    // Configure the cell...
-   Program* program = self.objects[indexPath.row];
+   UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"ProgramCell" forIndexPath:indexPath];
+   Program* program = self.programsWithCourses[indexPath.section];
+   Course* course = program.courses[indexPath.row];
 
-   cell.textLabel.text = [program description];
+   cell.textLabel.text = [course description];
    cell.textLabel.font = [UIFont systemFontOfSize:14];
+   cell.textLabel.numberOfLines = 0;
+   cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
 
    return cell;
 }
 
-/*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+    return NO;
 }
-*/
 
-/*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -296,25 +354,19 @@ BOOL requestBusy;
       // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
    }
 }
-*/
 
-/*
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
 }
-*/
 
-/*
 // Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the item to be re-orderable.
-    return YES;
+    return NO;
 }
-*/
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -323,6 +375,5 @@ BOOL requestBusy;
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
 
 @end

@@ -8,17 +8,25 @@
 
 #import "Program.h"
 
-
 @implementation Program
 
 @dynamic program_id;
 @dynamic title;
+@synthesize courses = _courses;
 
-- (BOOL)validateValue2:(id)value forKeyPath:(NSString*)keyPath error:(NSError* __autoreleasing*)error
+- (NSMutableArray*)courses
 {
-   BOOL result = true;
+   if(!_courses)
+   {
+      _courses = [[NSMutableArray alloc] init];
+   }
    
-   return result;
+   return _courses;
+}
+
+- (NSString*)description
+{
+   return [NSString stringWithFormat:@"Program %@: %@ (%ld courses)", self.program_id, self.title, (unsigned long)self.courses.count];
 }
 
 @end

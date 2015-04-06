@@ -11,9 +11,14 @@
 
 @implementation Course
 
-@dynamic program_id;
-@dynamic program_title;
 @dynamic course_id;
 @dynamic title;
+@dynamic program_id;
+@dynamic program_title;
+
+- (NSString*)description
+{
+   return [NSString stringWithFormat:@"Course ID %@: %@ For Program ID %@: %@", self.course_id, self.title, self.program_id, self.program_title];
+}
 
 @end
