@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Ryan Wing. All rights reserved.
 //
 
+#import <Social/Social.h>
+
 #import "LoginController.h"
 
 @interface LoginController ()

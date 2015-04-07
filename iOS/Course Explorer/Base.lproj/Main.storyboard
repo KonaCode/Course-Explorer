@@ -93,7 +93,45 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wr9-JQ-8hr" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="CUk-OL-K3G" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="463" y="545"/>
+            <point key="canvasLocation" x="479" y="545"/>
+        </scene>
+        <!--Item 2-->
+        <scene sceneID="4B0-jd-gVN">
+            <objects>
+                <viewController id="tKs-Ug-fYb" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Oke-9l-qwW"/>
+                        <viewControllerLayoutGuide type="bottom" id="FYb-PZ-pDx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dSH-2f-WsL">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="8Fz-Yj-Uk6"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mo7-kj-TF3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2048" y="-160"/>
+        </scene>
+        <!--Item 1-->
+        <scene sceneID="3nW-5w-WMm">
+            <objects>
+                <viewController id="h06-dM-oIJ" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4Wv-4o-qcH"/>
+                        <viewControllerLayoutGuide type="bottom" id="PCT-bs-EaZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ede-gz-Ruk">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" id="cwC-CA-chC"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eC6-Oe-abU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2048" y="-822"/>
         </scene>
         <!--Login Error-->
         <scene sceneID="ArU-FK-kch">
@@ -145,7 +183,63 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Kf-F7-qXk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1168" y="545"/>
+            <point key="canvasLocation" x="1354" y="545"/>
+        </scene>
+        <!--Social Media-->
+        <scene sceneID="bcO-5s-bV3">
+            <objects>
+                <viewController id="0JY-da-hjA" userLabel="Social Media" customClass="SocialMediaControllerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sX9-bB-erw"/>
+                        <viewControllerLayoutGuide type="bottom" id="zUI-iL-w8p"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4Sr-du-1Mb">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="go5-NL-OYJ">
+                                <rect key="frame" x="266" y="218" width="68" height="30"/>
+                                <state key="normal" title="Facebook">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="FacebookShare:" destination="0JY-da-hjA" eventType="touchUpInside" id="ARd-Ha-0vf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kHz-kr-Bhk">
+                                <rect key="frame" x="277" y="256" width="46" height="30"/>
+                                <state key="normal" title="Twitter">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="TwitterShare:" destination="0JY-da-hjA" eventType="touchUpInside" id="9T9-50-WOp"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8XS-qV-DtB">
+                                <rect key="frame" x="280" y="321" width="40" height="30"/>
+                                <state key="normal" title="Share">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="shareButton:" destination="0JY-da-hjA" eventType="touchUpInside" id="7kn-xT-9eR"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kHz-kr-Bhk" firstAttribute="top" secondItem="go5-NL-OYJ" secondAttribute="bottom" constant="8" symbolic="YES" id="JRb-V5-kGF"/>
+                            <constraint firstItem="8XS-qV-DtB" firstAttribute="top" secondItem="kHz-kr-Bhk" secondAttribute="bottom" constant="35" id="SdH-23-gzQ"/>
+                            <constraint firstItem="go5-NL-OYJ" firstAttribute="top" secondItem="sX9-bB-erw" secondAttribute="bottom" constant="198" id="TCS-u2-aKS"/>
+                            <constraint firstItem="kHz-kr-Bhk" firstAttribute="centerX" secondItem="go5-NL-OYJ" secondAttribute="centerX" id="cwR-zu-yPN"/>
+                            <constraint firstItem="go5-NL-OYJ" firstAttribute="centerX" secondItem="4Sr-du-1Mb" secondAttribute="centerX" id="owe-m4-gfM"/>
+                            <constraint firstItem="8XS-qV-DtB" firstAttribute="centerX" secondItem="kHz-kr-Bhk" secondAttribute="centerX" id="xPb-bT-SdW"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Social Media" badgeValue="Post" id="AXT-I6-Hnq" userLabel="Social Media"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DVo-yg-vI4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3" y="1212"/>
         </scene>
         <!--SCIS Programs-->
         <scene sceneID="jSY-Ud-ncn">
@@ -175,7 +269,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FHX-4d-8WG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="463" y="1353"/>
+            <point key="canvasLocation" x="479" y="1887"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="9UX-tD-q4K">
@@ -201,7 +295,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BUm-FM-wbu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1168" y="1353"/>
+            <point key="canvasLocation" x="1354" y="1887"/>
         </scene>
         <!--SCIS Programs-->
         <scene sceneID="ljB-Al-PUl">
@@ -218,7 +312,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5RL-Wf-eLq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-458" y="1353"/>
+            <point key="canvasLocation" x="-458" y="1887"/>
         </scene>
         <!--Home-->
         <scene sceneID="4BH-RJ-tyy">
@@ -263,7 +357,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BfK-ee-sJ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="463" y="-117"/>
+            <point key="canvasLocation" x="479" y="-119"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="SRQ-Gc-mpD">
@@ -279,6 +373,7 @@
                         <segue destination="z4W-WX-fV1" kind="relationship" relationship="viewControllers" id="lDz-KH-Rj7"/>
                         <segue destination="qA3-LZ-1RC" kind="relationship" relationship="viewControllers" id="AfH-uo-JlK"/>
                         <segue destination="noB-h3-GxS" kind="relationship" relationship="viewControllers" id="4Kz-4p-Dcr"/>
+                        <segue destination="0JY-da-hjA" kind="relationship" relationship="viewControllers" id="UBh-s0-ZDC"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JZf-sH-TP3" userLabel="First Responder" sceneMemberID="firstResponder"/>
