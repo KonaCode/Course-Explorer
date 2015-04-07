@@ -17,50 +17,95 @@ public class ProgramsContent
    /*
    The items of the about that we want to store
     */
-   public static List<ProgramsItem> ITEMS = new ArrayList<ProgramsItem>();
+   private List<Program> mContent;
 
    /*
    This map provides a means to look up items in the list
     */
-   public static Map<String, ProgramsItem> ITEM_MAP = new HashMap<String, ProgramsItem>();
+   private Map<Integer, Program> mProgramIDMap;
+   private Map<String, Program> mProgramNameMap;
 
-   static
+   private static ProgramsContent mInstance = null;
+
+   public static ProgramsContent getInstance()
    {
-      // Add the about items. For now, we have the author name and class project name
-      addItem(new ProgramsItem("Sample Program #1"));
-      addItem(new ProgramsItem("Sample Program #2"));
-      addItem(new ProgramsItem("Sample Program #3"));
+      if(mInstance == null)
+      {
+         mInstance = new ProgramsContent();
+      }
+
+      return mInstance;
    }
 
-   private static void addItem(ProgramsItem item)
+   public static boolean isEmpty()
+   {
+      boolean result = (mInstance == null) ? true : mInstance.mContent.isEmpty();
+
+      return result;
+   }
+
+   public static boolean clear()
+   {
+      boolean result = true;
+
+      if(mInstance != null)
+      {
+         mInstance.mContent.clear();
+         mInstance.mProgramIDMap.clear();
+      }
+
+      return result;
+   }
+
+   public static List<Program> getContent()
+   {
+      List<Program> result = (mInstance == null) ? new ArrayList<Program>() : mInstance.mContent;
+
+      return result;
+   }
+
+   public static Program getProgram(int pID)
+   {
+      Program result = null;
+
+      if(mInstance != null)
+      {
+         result = mInstance.mProgramIDMap.get(pID);
+      }
+
+      return result;
+   }
+
+   public static Program getProgram(String pName)
+   {
+      Program result = null;
+
+      if(mInstance != null)
+      {
+         result = mInstance.mProgramNameMap.get(pName);
+      }
+
+      return result;
+   }
+
+   private ProgramsContent()
+   {
+      mContent = new ArrayList<Program>();
+      mProgramIDMap = new HashMap<Integer, Program>();
+      mProgramNameMap = new HashMap<String, Program>();
+   }
+
+   public void update(Program pItem)
    {
       /*
       When adding an item, make sure the items list and mapping are consistent
        */
-      ITEMS.add(item);
-      ITEM_MAP.put(item.id, item);
-   }
-
-   /*
-   The ProgramsItem class encapsulates one entry within the about content.
-   For now, it is essentially just managing a single string
-    */
-   public static class ProgramsItem
-   {
-      public String id;
-      public String content;
-      private static int mCurrentID = 1;
-
-      public ProgramsItem(String content)
+      if(!mProgramIDMap.containsKey(pItem.mID))
       {
-         this.id = String.valueOf(mCurrentID++);
-         this.content = content;
+         mContent.add(pItem);
       }
 
-      @Override
-      public String toString()
-      {
-         return content;
-      }
+      mProgramIDMap.put(pItem.mID, pItem);
+      mProgramNameMap.put(pItem.mTitle, pItem);
    }
 }

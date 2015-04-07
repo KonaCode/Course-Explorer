@@ -1,4 +1,5 @@
 package com.konacode.courseexplorer;
+package org.brickred.socialauth.android;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -61,6 +62,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>
     * Keep track of the login task to ensure we can cancel it if requested.
     */
    private UserLoginTask mAuthTask = null;
+   private SocialAuthAdapter mSocialAuthAdapter;
 
    // UI references.
    private AutoCompleteTextView mEmailView;

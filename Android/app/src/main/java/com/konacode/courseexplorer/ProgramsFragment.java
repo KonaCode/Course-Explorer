@@ -2,16 +2,28 @@ package com.konacode.courseexplorer;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.JsonReader;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
+import android.widget.Button;
 import android.widget.TextView;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 /**
  * Created by Ryan on 3/8/2015.
@@ -22,9 +34,9 @@ public class ProgramsFragment extends Fragment implements AbsListView.OnItemClic
     * The Adapter which will be used to populate the ListView/GridView with
     * Views.
     */
+   private SCISServiceHelper mServiceHelper;
    private OnFragmentInteractionListener mListener;
    private AbsListView mListView;
-   private ListAdapter mAdapter;
 
    // TODO: Rename and change types of parameters
    public static ProgramsFragment newInstance()
@@ -46,50 +58,64 @@ public class ProgramsFragment extends Fragment implements AbsListView.OnItemClic
    }
 
    @Override
-   public void onCreate(Bundle savedInstanceState)
+   public void onCreate(Bundle pSavedInstanceState)
    {
-      super.onCreate(savedInstanceState);
-
-      /*
-      The adapter for the list view will retrieve items from the about content
-       for display by the UI.
-       */
-      mAdapter = new ArrayAdapter<ProgramsContent.ProgramsItem>(getActivity(),
-            android.R.layout.simple_list_item_1, android.R.id.text1, ProgramsContent.ITEMS);
+      super.onCreate(pSavedInstanceState);
    }
 
    @Override
-   public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                            Bundle savedInstanceState)
+   public View onCreateView(LayoutInflater pInflater, ViewGroup pContainer,
+                            Bundle pSavedInstanceState)
    {
       Context context = getActivity();
-      View view = inflater.inflate(R.layout.fragment_about, container, false);
+      View view = pInflater.inflate(R.layout.fragment_programs, pContainer, false);
+      ArrayAdapter adapter = new ArrayAdapter<Program>(context,
+            android.R.layout.simple_list_item_1, android.R.id.text1, ProgramsContent.getContent());
+
+      mServiceHelper = new SCISServiceHelper(context, context.getApplicationContext().getPackageName() + ".SCISResult");
 
       /*
       After we inflate the about fragment, we assign the list adapter to the list view.
       We don't need to refresh the list view or adapter because the content is immutable
        */
-      mListView = (AbsListView) view.findViewById(R.id.about_view_id);
-      mListView.setAdapter(mAdapter);
+      mListView = (AbsListView) view.findViewById(R.id.programs_view_id);
+      mListView.setAdapter(adapter);
+
+      Button refresh = (Button)view.findViewById(R.id.refresh_programs_button_id);
+
+      refresh.setOnClickListener(new View.OnClickListener()
+      {
+         @Override
+         public void onClick(View pView)
+         {
+            mServiceHelper.RetrieveAll();
+         }
+      });
+
+      if(ProgramsContent.isEmpty())
+      {
+         mServiceHelper.RetrieveAll();
+      }
 
       return view;
    }
 
    @Override
-   public void onAttach(Activity activity)
+   public void onAttach(Activity pActivity)
    {
-      super.onAttach(activity);
+      super.onAttach(pActivity);
    }
 
    @Override
    public void onDetach()
    {
       super.onDetach();
+
       mListener = null;
    }
 
    @Override
-   public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+   public void onItemClick(AdapterView<?> pParent, View pView, int pPosition, long pID)
    {
    }
 
@@ -98,13 +124,13 @@ public class ProgramsFragment extends Fragment implements AbsListView.OnItemClic
     * the list is empty. If you would like to change the text, call this method
     * to supply the text it should use.
     */
-   public void setEmptyText(CharSequence emptyText)
+   public void setEmptyText(CharSequence pEmptyText)
    {
       View emptyView = mListView.getEmptyView();
 
       if(emptyView instanceof TextView)
       {
-         ((TextView) emptyView).setText(emptyText);
+         ((TextView) emptyView).setText(pEmptyText);
       }
    }
 

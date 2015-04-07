@@ -3,6 +3,8 @@
  */
 package com.konacode.courseexplorer;
 
+import android.os.Build;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,11 +28,17 @@ public class AboutContent
    static
    {
       // Add the about items. For now, we have the author name and class project name
-      addItem(new AboutItem("Course Explorer"));
-      addItem(new AboutItem("Copyright 2015 Ryan Wing"));
+      addItem(new AboutItem(String.format("Course Explorer v%s", BuildConfig.VERSION_CODE)));
+      addItem(new AboutItem("Author: Ryan Wing"));
 
-      addItem(new AboutItem("MSSE 657"));
-      addItem(new AboutItem("Enterprise Android Development"));
+      addItem(new AboutItem(String.format("Product Version: %s", BuildConfig.VERSION_NAME)));
+      addItem(new AboutItem(String.format("Android Version: %s", Build.VERSION.RELEASE)));
+      addItem(new AboutItem("Product Type: Course Project"));
+
+      addItem(new AboutItem("Course Name: MSSE 657"));
+      addItem(new AboutItem("Course Description: Enterprise Android Development"));
+
+      addItem(new AboutItem("Copyright 2015 Ryan Wing"));
    }
 
    private static void addItem(AboutItem item)
