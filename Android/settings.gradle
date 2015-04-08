@@ -1,1 +1,7 @@
-include ':app'
+include ':app', ':samples:SwitchUserSample', ':samples:Scrumptious', ':samples:RPSSample', ':facebook', ':samples:HelloFacebookSample', ':samples:MessengerSendSample'
+project(':samples:SwitchUserSample').projectDir = new File('app/libs/facebook-android-sdk-4.0.1/samples/SwitchUserSample')
+project(':samples:Scrumptious').projectDir = new File('app/libs/facebook-android-sdk-4.0.1/samples/Scrumptious')
+project(':samples:RPSSample').projectDir = new File('app/libs/facebook-android-sdk-4.0.1/samples/RPSSample')
+project(':facebook').projectDir = new File('app/libs/facebook-android-sdk-4.0.1/facebook')
+project(':samples:HelloFacebookSample').projectDir = new File('app/libs/facebook-android-sdk-4.0.1/samples/HelloFacebookSample')
+project(':samples:MessengerSendSample').projectDir = new File('app/libs/facebook-android-sdk-4.0.1/samples/MessengerSendSample')

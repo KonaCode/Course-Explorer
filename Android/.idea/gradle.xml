@@ -10,6 +10,13 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/app/libs/facebook-android-sdk-4.0.1/facebook" />
+            <option value="$PROJECT_DIR$/app/libs/facebook-android-sdk-4.0.1/samples/HelloFacebookSample" />
+            <option value="$PROJECT_DIR$/app/libs/facebook-android-sdk-4.0.1/samples/MessengerSendSample" />
+            <option value="$PROJECT_DIR$/app/libs/facebook-android-sdk-4.0.1/samples/RPSSample" />
+            <option value="$PROJECT_DIR$/app/libs/facebook-android-sdk-4.0.1/samples/Scrumptious" />
+            <option value="$PROJECT_DIR$/app/libs/facebook-android-sdk-4.0.1/samples/SwitchUserSample" />
+            <option value="$PROJECT_DIR$/samples" />
           </set>
         </option>
       </GradleProjectSettings>

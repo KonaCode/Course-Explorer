@@ -38,6 +38,8 @@ public class AboutContent
       addItem(new AboutItem("Course Name: MSSE 657"));
       addItem(new AboutItem("Course Description: Enterprise Android Development"));
 
+      addItem(new AboutItem("Facebook SDK: " + com.facebook.FacebookSdk.getSdkVersion()));
+
       addItem(new AboutItem("Copyright 2015 Ryan Wing"));
    }
 

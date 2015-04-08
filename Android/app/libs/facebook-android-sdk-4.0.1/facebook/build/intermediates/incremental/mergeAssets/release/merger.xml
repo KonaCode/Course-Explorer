@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="D:\Work\KonaCode\Education\git\week5\Android\app\libs\facebook-android-sdk-4.0.1\facebook\src\main\assets"/></dataSet><dataSet config="release"><source path="D:\Work\KonaCode\Education\git\week5\Android\app\libs\facebook-android-sdk-4.0.1\facebook\src\release\assets"/></dataSet></merger>

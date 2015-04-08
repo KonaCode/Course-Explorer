@@ -135,9 +135,9 @@ public class MainActivity extends Activity implements ActionBar.OnNavigationList
             Toast.makeText(context, "Not Available Yet!", Toast.LENGTH_SHORT).show();
             break;
          case 3:
-            // Login
-            intent = new Intent(context, LoginActivity.class);
-            Toast.makeText(context, "Showing Login", Toast.LENGTH_SHORT).show();
+            // Social Media
+            intent = new Intent(context, SocialMediaActivity.class);
+            Toast.makeText(context, "Showing Social Media", Toast.LENGTH_SHORT).show();
             break;
          case 4:
             // About
