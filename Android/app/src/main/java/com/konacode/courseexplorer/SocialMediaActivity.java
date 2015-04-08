@@ -9,8 +9,10 @@ import org.brickred.socialauth.android.SocialAuthListener;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,34 +37,15 @@ public class SocialMediaActivity extends Activity
       getActionBar().setDisplayHomeAsUpEnabled(true);
 
       mContext = this;
-      mAdapter = new SocialAuthAdapter(new ResponseListener());
+      mAdapter = new SocialAuthAdapter(new ResponseListener(mContext));
+
+      Button postButton = (Button)findViewById(R.id.id_post_message_btn);
+      postButton.setTextColor(Color.WHITE);
+      postButton.setBackgroundResource(R.drawable.com_facebook_button_background);
 
       mAdapter.addProvider(SocialAuthAdapter.Provider.FACEBOOK, R.drawable.facebook);
       mAdapter.addProvider(SocialAuthAdapter.Provider.LINKEDIN, R.drawable.linkedin);
-
-      Button facebookBtn = (Button)findViewById(R.id.id_facebook_btn);
-      facebookBtn.setBackgroundResource(R.drawable.facebook);
-
-      facebookBtn.setOnClickListener(new View.OnClickListener()
-      {
-         @Override
-         public void onClick(View v)
-         {
-            mAdapter.authorize(mContext, SocialAuthAdapter.Provider.FACEBOOK);
-         }
-      });
-
-      Button linkedinBtn = (Button)findViewById(R.id.id_linkedin_btn);
-      linkedinBtn.setBackgroundResource(R.drawable.linkedin);
-
-      linkedinBtn.setOnClickListener(new View.OnClickListener()
-      {
-         @Override
-         public void onClick(View v)
-         {
-            mAdapter.authorize(mContext, SocialAuthAdapter.Provider.LINKEDIN);
-         }
-      });
+      mAdapter.enable(postButton);
    }
 
    @Override
@@ -112,34 +95,54 @@ public class SocialMediaActivity extends Activity
 
    private final class ResponseListener implements DialogListener
    {
+      private Context mContext;
+
+      ResponseListener(Context pContext)
+      {
+         super();
+
+         mContext = pContext;
+      }
+
       @Override
       public void onError(SocialAuthError socialAuthError)
       {
-         Toast.makeText(SocialMediaActivity.this, String.format("Error: %s", socialAuthError.getMessage()), Toast.LENGTH_LONG);
+         String message = String.format("Error: %s", socialAuthError.getMessage());
+
+         Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
       }
 
       @Override
       public void onCancel()
       {
-         Toast.makeText(SocialMediaActivity.this, "Cancelled", Toast.LENGTH_LONG);
+         Toast.makeText(mContext, "Cancelled", Toast.LENGTH_LONG).show();
       }
 
       @Override
       public void onBack()
       {
-         Toast.makeText(SocialMediaActivity.this, "Back", Toast.LENGTH_LONG);
+         Toast.makeText(mContext, "Back", Toast.LENGTH_LONG).show();
       }
 
       public void onComplete(Bundle pValues)
       {
-         EditText message = (EditText)findViewById(R.id.id_social_message_edit);
+         String message = ((EditText)findViewById(R.id.id_social_message_edit)).getText().toString();
 
-         mAdapter.updateStatus(message.getText().toString(), new MessageListener(), true);
+         mAdapter.updateStatus(message, new MessageListener(mContext), false);
       }
    }
 
    private final class MessageListener implements SocialAuthListener
    {
+      private Context mContext;
+
+      MessageListener(Context pContext)
+      {
+         super();
+
+         mContext = pContext;
+      }
+
       @Override
       public void onExecute(String s, Object o)
       {
@@ -155,13 +158,15 @@ public class SocialMediaActivity extends Activity
             break;
          }
 
-         Toast.makeText(SocialMediaActivity.this, message, Toast.LENGTH_LONG);
+         Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
       }
 
       @Override
       public void onError(SocialAuthError socialAuthError)
       {
-         Toast.makeText(SocialMediaActivity.this, String.format("Error: %s", socialAuthError.getMessage()), Toast.LENGTH_LONG);
+         String message = String.format("Error: %s", socialAuthError.getMessage());
+
+         Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
       }
    }
 }
