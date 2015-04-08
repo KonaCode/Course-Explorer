@@ -12,4 +12,6 @@
 
 - (IBAction) exitHere:(UIStoryboardSegue*)sender;
 
+- (IBAction)facebookLogin:(id)sender;
+
 @end

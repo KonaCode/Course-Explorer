@@ -13,8 +13,13 @@
 
 @property (nonatomic, retain) UIAlertView* alert;
 
-- (IBAction)shareButton:(id)sender;
+- (IBAction) exitHere:(UIStoryboardSegue*)sender;
+
 - (IBAction)FacebookShare:(id)sender;
 - (IBAction)TwitterShare:(id)sender;
+- (IBAction)loginButton:(id)sender;
+
+@property (nonatomic, assign) Boolean hasFacebookLogin;
+@property (nonatomic, assign) Boolean hasTwitterLogin;
 
 @end

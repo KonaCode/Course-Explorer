@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Course Explorer/SocialMediaControllerViewController.m"
-            timestampString = "450075643.995922"
+            timestampString = "450134260.336318"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "-FacebookShare:"
             landmarkType = "5">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Course Explorer/SocialMediaControllerViewController.m"
-            timestampString = "450075645.411095"
+            timestampString = "450134260.336318"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
             landmarkName = "-TwitterShare:"
             landmarkType = "5">
          </BreakpointContent>
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Course Explorer/SocialMediaControllerViewController.m"
-            timestampString = "450075658.092228"
+            timestampString = "450134260.336318"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
             landmarkName = "-targetedShare:"
             landmarkType = "5">
          </BreakpointContent>

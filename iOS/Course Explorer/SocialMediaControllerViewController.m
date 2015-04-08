@@ -14,15 +14,31 @@
 
 @implementation SocialMediaControllerViewController
 
+Boolean hasValidLogin;
+
+- (id)init
+{
+   if([super init])
+   {
+      hasValidLogin = true;
+   }
+   
+   return self;
+}
+
 - (void)viewDidLoad
 {
    [super viewDidLoad];
+
    // Do any additional setup after loading the view.
+   self.hasFacebookLogin = true;
+   self.hasTwitterLogin = true;
 }
 
 - (void)didReceiveMemoryWarning
 {
    [super didReceiveMemoryWarning];
+
    // Dispose of any resources that can be recreated.
 }
 
@@ -36,9 +52,26 @@
    return _alert;
 }
 
+- (IBAction) exitHere:(UIStoryboardSegue*)sender
+{
+}
+
 - (void)targetedShare:(NSString*)serviceType
 {
-   if([SLComposeViewController isAvailableForServiceType:serviceType])
+   Boolean result = hasValidLogin;
+   
+   if(!result)
+   {
+      [self performSegueWithIdentifier:@"loginSocialSegue" sender:self];
+      return;
+   }
+
+   if(result)
+   {
+      result = [SLComposeViewController isAvailableForServiceType:serviceType];
+   }
+   
+   if(result)
    {
       SLComposeViewController* shareView = [SLComposeViewController composeViewControllerForServiceType:serviceType];
       
@@ -46,7 +79,8 @@
       [shareView addImage:[UIImage imageNamed:@"ExampleImage"]];
       [self presentViewController:shareView animated:YES completion:nil];
    }
-   else
+   
+   if(!result)
    {
       self.alert.message = @"You do not have this service";
       [self.alert show];
@@ -55,12 +89,24 @@
 
 - (IBAction)FacebookShare:(id)sender
 {
+   hasValidLogin = self.hasFacebookLogin;
+   
    [self targetedShare:SLServiceTypeFacebook];
 }
 
 - (IBAction)TwitterShare:(id)sender
 {
+   hasValidLogin = self.hasTwitterLogin;
+
    [self targetedShare:SLServiceTypeTwitter];
+}
+
+- (IBAction)loginButton:(id)sender
+{
+}
+
+- (IBAction)shareButton:(id)sender
+{
 }
 
 #pragma mark - Navigation
