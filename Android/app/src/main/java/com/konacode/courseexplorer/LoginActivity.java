@@ -1,5 +1,6 @@
 package com.konacode.courseexplorer;
-package org.brickred.socialauth.android;
+
+import android.view.View;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -35,6 +36,8 @@ import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.SignInButton;
+
+import org.brickred.socialauth.android.SocialAuthAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

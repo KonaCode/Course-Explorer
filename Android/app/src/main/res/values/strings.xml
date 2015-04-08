@@ -14,4 +14,7 @@
     <string name="action_mail">Mail</string>
     <string name="title_activity_about">AboutActivity</string>
     <string name="title_activity_programs">ProgramsActivity</string>
+
+    <string name="task_service_name">Task Processor Service</string>
+    <string name="title_activity_social_media">SocialMediaActivity</string>
 </resources>

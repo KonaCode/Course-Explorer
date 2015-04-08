@@ -27,7 +27,7 @@ public class SectionContent
 
    public String[] getMainContent()
    {
-      String[] content = { mContext.getString(R.string.app_name), "SCIS Programs", "Messaging", "Login", "About" };
+      String[] content = { mContext.getString(R.string.app_name), "SCIS Programs", "Messaging", "Social Media", "About" };
 
       return content;
    }
