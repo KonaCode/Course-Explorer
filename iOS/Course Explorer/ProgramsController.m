@@ -81,11 +81,6 @@ BOOL requestBusy;
       [[RKObjectManager sharedManager] getObjectsAtPath:@"/Regis2/webresources/regis2.program" parameters:requestParams
       success:^(RKObjectRequestOperation* operation, RKMappingResult* mappingResult)
       {
-//         _objects = mappingResult.array;
-
-//         [self.tableView reloadData];
-//         [self.alert dismissWithClickedButtonIndex:0 animated:YES];
-
          NSLog(@"Objects: %@", self.objects);
          
          requestBusy = false;
@@ -202,94 +197,47 @@ BOOL requestBusy;
 
 - (void)initializeRestKit
 {
-   BOOL useManagedObjectContext = true;
-   BOOL useHTTPClient = false;
-   BOOL useCustom = false;
+   RKObjectManager* objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://regisscis.net"]];
+   NSManagedObjectModel* objectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+   RKManagedObjectStore* objectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:objectModel];
    
-   if(useManagedObjectContext)
-   {
-      RKObjectManager* objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://regisscis.net"]];
-      NSManagedObjectModel* objectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
-      RKManagedObjectStore* objectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:objectModel];
-      
-      objectManager.managedObjectStore = objectStore;
-      
-      // Create a map for the program class
-      RKEntityMapping* programMapping = [RKEntityMapping mappingForEntityForName:NSStringFromClass([Program class]) inManagedObjectStore:objectStore];
-      
-      programMapping.identificationAttributes = @[ @"program_id", @"title" ];
-      [programMapping addAttributeMappingsFromDictionary:@{ @"id": @"program_id", @"name": @"title" }];
-      
-      // Create a map for the course class
-      RKEntityMapping* courseMapping = [RKEntityMapping mappingForEntityForName:NSStringFromClass([Course class]) inManagedObjectStore:objectStore];
-      
-      courseMapping.identificationAttributes = @[ @"course_id", @"title", @"program_id", @"program_title" ];
-      [courseMapping addAttributeMappingsFromDictionary:@{ @"id": @"course_id", @"name": @"title", @"pid.id": @"program_id", @"pid.name": @"program_title" }];
-      
-      // Create the persistence store
-      [objectStore createPersistentStoreCoordinator];
-      
-      NSURL* applicationDocumentsDirectory = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-      NSURL* storeURL = [applicationDocumentsDirectory URLByAppendingPathComponent:@"CourseExplorer-SCIS.sqlite"];
-      NSString* storePath = [storeURL path];
-      NSError* error = nil;
-      
-      NSPersistentStore* persistentStore = [objectStore addSQLitePersistentStoreAtPath:storePath fromSeedDatabaseAtPath:nil withConfiguration:nil options:@{ NSMigratePersistentStoresAutomaticallyOption: @YES, NSInferMappingModelAutomaticallyOption: @YES } error:&error];
-      
-      NSAssert(persistentStore, @"Failed to initialize the persistent store: %@", error);
-      
-      [objectStore createManagedObjectContexts];
-      objectStore.managedObjectCache = [[RKInMemoryManagedObjectCache alloc] initWithManagedObjectContext:objectStore.persistentStoreManagedObjectContext];
+   objectManager.managedObjectStore = objectStore;
+   
+   // Create a map for the program class
+   RKEntityMapping* programMapping = [RKEntityMapping mappingForEntityForName:NSStringFromClass([Program class]) inManagedObjectStore:objectStore];
+   
+   programMapping.identificationAttributes = @[ @"program_id", @"title" ];
+   [programMapping addAttributeMappingsFromDictionary:@{ @"id": @"program_id", @"name": @"title" }];
+   
+   // Create a map for the course class
+   RKEntityMapping* courseMapping = [RKEntityMapping mappingForEntityForName:NSStringFromClass([Course class]) inManagedObjectStore:objectStore];
+   
+   courseMapping.identificationAttributes = @[ @"course_id", @"title", @"program_id", @"program_title" ];
+   [courseMapping addAttributeMappingsFromDictionary:@{ @"id": @"course_id", @"name": @"title", @"pid.id": @"program_id", @"pid.name": @"program_title" }];
+   
+   // Create the persistence store
+   [objectStore createPersistentStoreCoordinator];
+   
+   NSURL* applicationDocumentsDirectory = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+   NSURL* storeURL = [applicationDocumentsDirectory URLByAppendingPathComponent:@"CourseExplorer-SCIS.sqlite"];
+   NSString* storePath = [storeURL path];
+   NSError* error = nil;
+   
+   NSPersistentStore* persistentStore = [objectStore addSQLitePersistentStoreAtPath:storePath fromSeedDatabaseAtPath:nil withConfiguration:nil options:@{ NSMigratePersistentStoresAutomaticallyOption: @YES, NSInferMappingModelAutomaticallyOption: @YES } error:&error];
+   
+   NSAssert(persistentStore, @"Failed to initialize the persistent store: %@", error);
+   
+   [objectStore createManagedObjectContexts];
+   objectStore.managedObjectCache = [[RKInMemoryManagedObjectCache alloc] initWithManagedObjectContext:objectStore.persistentStoreManagedObjectContext];
 
-      NSString* keyPath = nil;
-      RKResponseDescriptor* programsResponseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:programMapping method:RKRequestMethodGET pathPattern:@"/Regis2/webresources/regis2.program" keyPath:keyPath statusCodes:[NSIndexSet indexSetWithIndex:200]];
-      RKResponseDescriptor* coursesResponseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:courseMapping method:RKRequestMethodGET pathPattern:@"/Regis2/webresources/regis2.course" keyPath:keyPath statusCodes:[NSIndexSet indexSetWithIndex:200]];
-      
-      [objectManager setAcceptHeaderWithMIMEType:RKMIMETypeJSON];
-      [objectManager setRequestSerializationMIMEType:RKMIMETypeJSON];
-      [objectManager addResponseDescriptor:programsResponseDescriptor];
-      [objectManager addResponseDescriptor:coursesResponseDescriptor];
-   }
-
-   if(useCustom)
-   {
-      NSURL* baseURL = [NSURL URLWithString:@"http://regisscis.net"];
-      AFHTTPClient* client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
-      
-      RKObjectManager* objectManager = [[RKObjectManager alloc] initWithHTTPClient:client];
-      NSManagedObjectModel* objectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
-      RKManagedObjectStore* objectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:objectModel];
-      RKObjectMapping* programMapping = [RKObjectMapping mappingForClass:[Program class]];
-      NSString* keyPath = nil; //[[NSString alloc] initWithFormat:@"response"];
-      
-      objectManager.managedObjectStore = objectStore;
-      [objectManager setAcceptHeaderWithMIMEType:RKMIMETypeJSON];
-      [objectManager setRequestSerializationMIMEType:RKMIMETypeJSON];
-      
-      // Create a map for the program class
-      [programMapping addAttributeMappingsFromDictionary:@{ @"id": @"program_id", @"name": @"title" }];
-
-      RKResponseDescriptor* responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:programMapping method:RKRequestMethodGET pathPattern:@"/Regis2/webresources/regis2.program" keyPath:keyPath statusCodes:[NSIndexSet indexSetWithIndex:200]];
-      
-      [objectManager addResponseDescriptor:responseDescriptor];
-   }
-
-   if(useHTTPClient)
-   {
-      NSURL* baseURL = [NSURL URLWithString:@"http://regisscis.net"];
-      AFHTTPClient* client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
-      
-      RKObjectManager* objectManager = [[RKObjectManager alloc] initWithHTTPClient:client];
-      RKObjectMapping* programMapping = [RKObjectMapping mappingForClass:[Program class]];
-
-      [objectManager setAcceptHeaderWithMIMEType:RKMIMETypeJSON];
-      [objectManager setRequestSerializationMIMEType:RKMIMETypeJSON];
-      [programMapping addAttributeMappingsFromArray:@[ @"id", @"name" ]];
-      
-      RKResponseDescriptor* responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:programMapping method:RKRequestMethodGET pathPattern:@"/Regis2/webresources/regis2.program" keyPath:@"response.programs" statusCodes:[NSIndexSet indexSetWithIndex:200]];
-      
-      [objectManager addResponseDescriptor:responseDescriptor];
-   }
+   NSString* keyPath = nil;
+   RKResponseDescriptor* programsResponseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:programMapping method:RKRequestMethodGET pathPattern:@"/Regis2/webresources/regis2.program" keyPath:keyPath statusCodes:[NSIndexSet indexSetWithIndex:200]];
+   RKResponseDescriptor* coursesResponseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:courseMapping method:RKRequestMethodGET pathPattern:@"/Regis2/webresources/regis2.course" keyPath:keyPath statusCodes:[NSIndexSet indexSetWithIndex:200]];
+   
+   [objectManager setAcceptHeaderWithMIMEType:RKMIMETypeJSON];
+   [objectManager setRequestSerializationMIMEType:RKMIMETypeJSON];
+   [objectManager addResponseDescriptor:programsResponseDescriptor];
+   [objectManager addResponseDescriptor:coursesResponseDescriptor];
 }
 
 #pragma mark - Table view data source

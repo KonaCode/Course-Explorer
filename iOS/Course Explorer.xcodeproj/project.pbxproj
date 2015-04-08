@@ -22,6 +22,8 @@
 		949A54C91AAD576E00FE6187 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 949A54C81AAD576E00FE6187 /* LoginController.m */; };
 		949A54CC1AAD5ABF00FE6187 /* LoginErrorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 949A54CB1AAD5ABF00FE6187 /* LoginErrorController.m */; };
 		949A54CF1AAD5BA200FE6187 /* ProgramsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 949A54CE1AAD5BA200FE6187 /* ProgramsController.m */; };
+		949FA33E1AD392C400FBBF04 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 949FA33D1AD392C400FBBF04 /* Social.framework */; };
+		949FA3411AD3981400FBBF04 /* SocialMediaControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 949FA3401AD3981400FBBF04 /* SocialMediaControllerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,9 @@
 		949A54CB1AAD5ABF00FE6187 /* LoginErrorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginErrorController.m; sourceTree = "<group>"; };
 		949A54CD1AAD5BA200FE6187 /* ProgramsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramsController.h; sourceTree = "<group>"; };
 		949A54CE1AAD5BA200FE6187 /* ProgramsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramsController.m; sourceTree = "<group>"; };
+		949FA33D1AD392C400FBBF04 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		949FA33F1AD3981400FBBF04 /* SocialMediaControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialMediaControllerViewController.h; sourceTree = "<group>"; };
+		949FA3401AD3981400FBBF04 /* SocialMediaControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialMediaControllerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				949FA33E1AD392C400FBBF04 /* Social.framework in Frameworks */,
 				2E5581C1C1B0B87EB96D0D6B /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -87,6 +93,7 @@
 		9175D289A165114935867646 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				949FA33D1AD392C400FBBF04 /* Social.framework */,
 				384393720E58FA9311BF0FC4 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -143,6 +150,8 @@
 				949A54CB1AAD5ABF00FE6187 /* LoginErrorController.m */,
 				949A54CD1AAD5BA200FE6187 /* ProgramsController.h */,
 				949A54CE1AAD5BA200FE6187 /* ProgramsController.m */,
+				949FA33F1AD3981400FBBF04 /* SocialMediaControllerViewController.h */,
+				949FA3401AD3981400FBBF04 /* SocialMediaControllerViewController.m */,
 			);
 			path = "Course Explorer";
 			sourceTree = "<group>";
@@ -320,6 +329,7 @@
 				949A54AA1AAD4F9F00FE6187 /* ViewController.m in Sources */,
 				949A54C91AAD576E00FE6187 /* LoginController.m in Sources */,
 				949A54CF1AAD5BA200FE6187 /* ProgramsController.m in Sources */,
+				949FA3411AD3981400FBBF04 /* SocialMediaControllerViewController.m in Sources */,
 				942175761ACD9C92000D9BBA /* Program.m in Sources */,
 				942175791ACD9CA1000D9BBA /* Course.m in Sources */,
 				949A54CC1AAD5ABF00FE6187 /* LoginErrorController.m in Sources */,
