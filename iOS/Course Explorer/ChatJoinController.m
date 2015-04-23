@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Ryan Wing. All rights reserved.
 //
 
+#import "ChatController.h"
 #import "ChatJoinController.h"
 
 @interface ChatJoinController ()
@@ -36,6 +37,16 @@
    return _alert;
 }
 
+- (NSString*)name
+{
+   if(!_name)
+   {
+      _name = [[NSString alloc] initWithFormat:@"<Unknown User>"];
+   }
+   
+   return _name;
+}
+
 - (IBAction)exitHere:(UIStoryboardSegue*)sender
 {
 }
@@ -48,9 +59,8 @@
    
    if([identifier isEqualToString:@"joinChat"])
    {
-      NSString* name = [self.nameEdit text];
-      
-      result = ([name length] > 0);
+      self.name = [self.nameEdit text];
+      result = ([self.name length] > 0);
       
       if(!result)
       {
@@ -67,6 +77,12 @@
 {
    // Get the new view controller using [segue destinationViewController].
    // Pass the selected object to the new view controller.
+   if([[segue identifier] isEqualToString:@"joinChat"])
+   {
+      ChatController* chatController = [segue destinationViewController];
+      
+      chatController.name = self.name;
+   }
 }
 
 @end

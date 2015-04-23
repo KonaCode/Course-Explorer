@@ -46,7 +46,7 @@ NSOutputStream* outputStream;
 {
    NSData* data = [[NSData alloc] initWithData:[message dataUsingEncoding:NSASCIIStringEncoding]];
 
-   [self.messages addObject:[[NSString alloc] initWithFormat:@"You said: %@", message]];
+   [self.messages addObject:message];
    [outputStream write:[data bytes] maxLength:[data length]];
 }
 

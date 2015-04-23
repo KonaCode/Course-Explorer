@@ -14,6 +14,26 @@
 
 @implementation CloudController
 
+- (UIAlertView*)alert
+{
+   if(!_alert)
+   {
+      self.alert = [[UIAlertView alloc] initWithTitle:@"iCloud Notes" message:@"Error" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+   }
+   
+   return _alert;
+}
+
+- (NSMutableArray*)notes
+{
+   if(!_notes)
+   {
+      _notes = [[NSMutableArray alloc] init];
+   }
+   
+   return _notes;
+}
+
 - (id)init
 {
    if([super init])
@@ -45,55 +65,10 @@
    // Dispose of any resources that can be recreated.
 }
 
-- (UIAlertView*)alert
-{
-   if(!_alert)
-   {
-      self.alert = [[UIAlertView alloc] initWithTitle:@"iCloud Notes" message:@"Error" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-   }
-   
-   return _alert;
-}
-
-- (NSMutableArray*)notes
-{
-   if(!_notes)
-   {
-      _notes = [[NSMutableArray alloc] init];
-   }
-   
-   return _notes;
-}
-
 - (void)insertNewObject:(id)sender
 {
    [self.alert show];
-//   if (!self.objects)
-//   {
-//      self.objects = [[NSMutableArray alloc] init];
-//   }
-   
-   // Create an empty contact and add it to the service
-   // This will populate the members with default values
-//   SmartList* smartList = [[SmartList alloc] init];
-//   smartList.name = [NSString stringWithFormat:@"New List #%@", [[NSNumber alloc] initWithInt:(int)[listService count]+1]];
-//   
-//   [listService create:smartList];
-   
-   // Notify the rtable view to reload, causing it to re-fetch the contacts from the service
-//   [self.tableView reloadData];
 }
-
-/*
-- (void)scrollViewDidScroll:(UIScrollView*)scrollView
-{
-   CGRect frame = goToTop.frame;
-   frame.origin.y = scrollView.contentOffset.y + self.tableView.frame.size.height - goToTop.frame.size.height;
-   goToTop.frame = frame;
-   
-   [self.view bringSubviewToFront:goToTop];
-}
-*/
 
 #pragma mark - iCloud Observers
 

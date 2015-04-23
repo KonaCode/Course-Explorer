@@ -14,21 +14,6 @@
 
 @implementation ChatController
 
-- (void)viewDidLoad
-{
-   [super viewDidLoad];
-
-   // Do any additional setup after loading the view.
-   [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"ChatMessageCell"];
-   [self.tableView setDataSource:self];
-}
-
-- (void)didReceiveMemoryWarning
-{
-   [super didReceiveMemoryWarning];
-   // Dispose of any resources that can be recreated.
-}
-
 - (UIAlertView*)alert
 {
    if(!_alert)
@@ -43,10 +28,53 @@
 {
    if(!_service)
    {
-      self.service = [[SocketService alloc] init];
+      _service = [[SocketService alloc] init];
+      [_service connect];
    }
    
    return _service;
+}
+
+- (NSString*)name
+{
+   if(!_name)
+   {
+      _name = [[NSString alloc] initWithFormat:@"<Unknown User>"];
+   }
+   
+   return _name;
+}
+
+- (void)viewDidLoad
+{
+   [super viewDidLoad];
+
+   // Do any additional setup after loading the view.
+   [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"ChatMessageCell"];
+   [self.tableView setDataSource:self];
+}
+
+- (void)didReceiveMemoryWarning
+{
+   [super didReceiveMemoryWarning];
+
+   // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+   [super viewWillAppear:animated];
+   
+   [self.service connect];
+   [self.service send:[[NSString alloc] initWithFormat:@"%@ has joined", self.name]];
+   [self.tableView reloadData];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+   [super viewWillDisappear:animated];
+   
+   [self.service disconnect];
 }
 
 - (IBAction)sendMessage:(id)sender
@@ -60,8 +88,9 @@
    }
    else
    {
-      [self.service send:message];
+      [self.service send:[[NSString alloc] initWithFormat:@"%@: %@", self.name, message]];
       [self.tableView reloadData];
+      [self.messageEdit setText:@""];
    }
 }
 
@@ -85,7 +114,7 @@
 
 - (NSString*)tableView:(UITableView*)tableView titleForHeaderInSection:(NSInteger)section
 {
-   NSString* result = [[NSString alloc] initWithFormat:@"Messages"];
+   NSString* result = [[NSString alloc] initWithFormat:@"Chat Messages"];
    
    return result;
 }

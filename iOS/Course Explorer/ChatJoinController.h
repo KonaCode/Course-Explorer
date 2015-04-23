@@ -11,6 +11,7 @@
 @interface ChatJoinController : UIViewController
 
 @property (nonatomic, retain) UIAlertView* alert;
+@property (nonatomic, retain) NSString* name;
 @property (weak, nonatomic) IBOutlet UITextField* nameEdit;
 
 - (IBAction)exitHere:(UIStoryboardSegue*)sender;

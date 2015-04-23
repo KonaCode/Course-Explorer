@@ -14,6 +14,8 @@
 
 @property (nonatomic, retain) UIAlertView* alert;
 @property (nonatomic, retain) SocketService* service;
+@property (nonatomic, retain) NSString* name;
+
 @property (weak, nonatomic) IBOutlet UITableView* tableView;
 @property (weak, nonatomic) IBOutlet UITextField* messageEdit;
 
