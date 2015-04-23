@@ -9,7 +9,7 @@
 #import <Social/Social.h>
 #import <UIKit/UIKit.h>
 
-@interface SocialMediaControllerViewController : SLComposeViewController
+@interface SocialMediaController : SLComposeViewController
 
 @property (nonatomic, retain) UIAlertView* alert;
 
