@@ -23,7 +23,13 @@
 		949A54CC1AAD5ABF00FE6187 /* LoginErrorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 949A54CB1AAD5ABF00FE6187 /* LoginErrorController.m */; };
 		949A54CF1AAD5BA200FE6187 /* ProgramsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 949A54CE1AAD5BA200FE6187 /* ProgramsController.m */; };
 		949FA33E1AD392C400FBBF04 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 949FA33D1AD392C400FBBF04 /* Social.framework */; };
-		949FA3411AD3981400FBBF04 /* SocialMediaControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 949FA3401AD3981400FBBF04 /* SocialMediaControllerViewController.m */; };
+		949FA3411AD3981400FBBF04 /* SocialMediaController.m in Sources */ = {isa = PBXBuildFile; fileRef = 949FA3401AD3981400FBBF04 /* SocialMediaController.m */; };
+		94D905031AD8323400287CAD /* CloudController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D905021AD8323400287CAD /* CloudController.m */; };
+		94D905061AD8390000287CAD /* AddNoteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D905051AD8390000287CAD /* AddNoteController.m */; };
+		94D905091AD841C800287CAD /* CloudNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D905081AD841C800287CAD /* CloudNavController.m */; };
+		94F7E1661AE8181A00A0BD91 /* SocketService.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F7E1651AE8181A00A0BD91 /* SocketService.m */; };
+		94F7E1691AE8950600A0BD91 /* ChatJoinController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F7E1681AE8950600A0BD91 /* ChatJoinController.m */; };
+		94F7E16C1AE899CB00A0BD91 /* ChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F7E16B1AE899CB00A0BD91 /* ChatController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,8 +72,20 @@
 		949A54CD1AAD5BA200FE6187 /* ProgramsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramsController.h; sourceTree = "<group>"; };
 		949A54CE1AAD5BA200FE6187 /* ProgramsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramsController.m; sourceTree = "<group>"; };
 		949FA33D1AD392C400FBBF04 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		949FA33F1AD3981400FBBF04 /* SocialMediaControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialMediaControllerViewController.h; sourceTree = "<group>"; };
-		949FA3401AD3981400FBBF04 /* SocialMediaControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialMediaControllerViewController.m; sourceTree = "<group>"; };
+		949FA33F1AD3981400FBBF04 /* SocialMediaController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialMediaController.h; sourceTree = "<group>"; };
+		949FA3401AD3981400FBBF04 /* SocialMediaController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialMediaController.m; sourceTree = "<group>"; };
+		94D905011AD8323400287CAD /* CloudController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloudController.h; sourceTree = "<group>"; };
+		94D905021AD8323400287CAD /* CloudController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloudController.m; sourceTree = "<group>"; };
+		94D905041AD8390000287CAD /* AddNoteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNoteController.h; sourceTree = "<group>"; };
+		94D905051AD8390000287CAD /* AddNoteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNoteController.m; sourceTree = "<group>"; };
+		94D905071AD841C800287CAD /* CloudNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloudNavController.h; sourceTree = "<group>"; };
+		94D905081AD841C800287CAD /* CloudNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloudNavController.m; sourceTree = "<group>"; };
+		94F7E1641AE8181A00A0BD91 /* SocketService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketService.h; sourceTree = "<group>"; };
+		94F7E1651AE8181A00A0BD91 /* SocketService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketService.m; sourceTree = "<group>"; };
+		94F7E1671AE8950600A0BD91 /* ChatJoinController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatJoinController.h; sourceTree = "<group>"; };
+		94F7E1681AE8950600A0BD91 /* ChatJoinController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatJoinController.m; sourceTree = "<group>"; };
+		94F7E16A1AE899CB00A0BD91 /* ChatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatController.h; sourceTree = "<group>"; };
+		94F7E16B1AE899CB00A0BD91 /* ChatController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +126,8 @@
 				942175751ACD9C92000D9BBA /* Program.m */,
 				942175771ACD9CA1000D9BBA /* Course.h */,
 				942175781ACD9CA1000D9BBA /* Course.m */,
+				94F7E1641AE8181A00A0BD91 /* SocketService.h */,
+				94F7E1651AE8181A00A0BD91 /* SocketService.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -135,12 +155,12 @@
 		949A54A01AAD4F9F00FE6187 /* Course Explorer */ = {
 			isa = PBXGroup;
 			children = (
+				949A54AB1AAD4F9F00FE6187 /* Main.storyboard */,
 				9421757A1ACDA4ED000D9BBA /* Model */,
 				949A54A51AAD4F9F00FE6187 /* AppDelegate.h */,
 				949A54A61AAD4F9F00FE6187 /* AppDelegate.m */,
 				949A54A81AAD4F9F00FE6187 /* ViewController.h */,
 				949A54A91AAD4F9F00FE6187 /* ViewController.m */,
-				949A54AB1AAD4F9F00FE6187 /* Main.storyboard */,
 				949A54AE1AAD4F9F00FE6187 /* Images.xcassets */,
 				949A54B01AAD4F9F00FE6187 /* LaunchScreen.xib */,
 				949A54A11AAD4F9F00FE6187 /* Supporting Files */,
@@ -150,8 +170,18 @@
 				949A54CB1AAD5ABF00FE6187 /* LoginErrorController.m */,
 				949A54CD1AAD5BA200FE6187 /* ProgramsController.h */,
 				949A54CE1AAD5BA200FE6187 /* ProgramsController.m */,
-				949FA33F1AD3981400FBBF04 /* SocialMediaControllerViewController.h */,
-				949FA3401AD3981400FBBF04 /* SocialMediaControllerViewController.m */,
+				949FA33F1AD3981400FBBF04 /* SocialMediaController.h */,
+				949FA3401AD3981400FBBF04 /* SocialMediaController.m */,
+				94D905011AD8323400287CAD /* CloudController.h */,
+				94D905021AD8323400287CAD /* CloudController.m */,
+				94D905041AD8390000287CAD /* AddNoteController.h */,
+				94D905051AD8390000287CAD /* AddNoteController.m */,
+				94D905071AD841C800287CAD /* CloudNavController.h */,
+				94D905081AD841C800287CAD /* CloudNavController.m */,
+				94F7E1671AE8950600A0BD91 /* ChatJoinController.h */,
+				94F7E1681AE8950600A0BD91 /* ChatJoinController.m */,
+				94F7E16A1AE899CB00A0BD91 /* ChatController.h */,
+				94F7E16B1AE899CB00A0BD91 /* ChatController.m */,
 			);
 			path = "Course Explorer";
 			sourceTree = "<group>";
@@ -328,13 +358,19 @@
 			files = (
 				949A54AA1AAD4F9F00FE6187 /* ViewController.m in Sources */,
 				949A54C91AAD576E00FE6187 /* LoginController.m in Sources */,
+				94F7E1661AE8181A00A0BD91 /* SocketService.m in Sources */,
+				94F7E16C1AE899CB00A0BD91 /* ChatController.m in Sources */,
+				94F7E1691AE8950600A0BD91 /* ChatJoinController.m in Sources */,
 				949A54CF1AAD5BA200FE6187 /* ProgramsController.m in Sources */,
-				949FA3411AD3981400FBBF04 /* SocialMediaControllerViewController.m in Sources */,
+				94D905031AD8323400287CAD /* CloudController.m in Sources */,
+				949FA3411AD3981400FBBF04 /* SocialMediaController.m in Sources */,
 				942175761ACD9C92000D9BBA /* Program.m in Sources */,
 				942175791ACD9CA1000D9BBA /* Course.m in Sources */,
 				949A54CC1AAD5ABF00FE6187 /* LoginErrorController.m in Sources */,
 				942175701ACD9BE8000D9BBA /* CourseModel.xcdatamodeld in Sources */,
 				949A54A71AAD4F9F00FE6187 /* AppDelegate.m in Sources */,
+				94D905061AD8390000287CAD /* AddNoteController.m in Sources */,
+				94D905091AD841C800287CAD /* CloudNavController.m in Sources */,
 				9421756A1ACD9B26000D9BBA /* ProgramModel.xcdatamodeld in Sources */,
 				949A54A41AAD4F9F00FE6187 /* main.m in Sources */,
 			);
@@ -412,7 +448,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -448,7 +484,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

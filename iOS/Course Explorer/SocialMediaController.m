@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 Ryan Wing. All rights reserved.
 //
 
-#import "SocialMediaControllerViewController.h"
+#import "SocialMediaController.h"
 
-@interface SocialMediaControllerViewController ()
+@interface SocialMediaController ()
 
 @end
 
-@implementation SocialMediaControllerViewController
+@implementation SocialMediaController
 
 Boolean hasValidLogin;
 
