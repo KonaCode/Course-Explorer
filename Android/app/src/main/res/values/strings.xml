@@ -17,4 +17,6 @@
 
     <string name="task_service_name">Task Processor Service</string>
     <string name="title_activity_social_media">SocialMediaActivity</string>
+    <string name="title_activity_chat">ChatActivity</string>
+    <string name="title_activity_conversation">ConversationActivity</string>
 </resources>
