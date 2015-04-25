@@ -28,7 +28,7 @@
 {
    if(!_service)
    {
-      _service = [[SocketService alloc] init];
+      _service = [[SocketService alloc] initWithDelegate:self];
       [_service connect];
    }
    
@@ -92,6 +92,11 @@
       [self.tableView reloadData];
       [self.messageEdit setText:@""];
    }
+}
+
+- (void)socketService:(SocketService*)service didReceive:(NSString*)message
+{
+   [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source

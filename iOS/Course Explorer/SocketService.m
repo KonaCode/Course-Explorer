@@ -23,6 +23,16 @@ NSOutputStream* outputStream;
    return _messages;
 }
 
+- (id) initWithDelegate:(id)delegate
+{
+   if([super init])
+   {
+      self.delegate = delegate;
+   }
+   
+   return self;
+}
+
 - (void) connect
 {
    CFReadStreamRef readStream;
@@ -73,6 +83,11 @@ NSOutputStream* outputStream;
       }
    }
    
+   if([self.delegate respondsToSelector:@selector(socketService:didReceive:)])
+   {
+      [self.delegate socketService:self didReceive:result];
+   }
+
    return result;
 }
 
