@@ -24,11 +24,11 @@
    return _alert;
 }
 
-- (SocketService*)service
+- (WebSocketService*)service
 {
    if(!_service)
    {
-      _service = [[SocketService alloc] initWithDelegate:self];
+      _service = [[WebSocketService alloc] initWithDelegate:self];
       [_service connect];
    }
    
@@ -95,7 +95,7 @@
    }
 }
 
-- (void)socketService:(SocketService*)service didReceive:(NSString*)message
+- (void)webSocketService:(WebSocketService*)service didReceive:(NSString*)message
 {
    [self.tableView reloadData];
 }

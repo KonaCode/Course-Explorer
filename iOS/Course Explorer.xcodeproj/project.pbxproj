@@ -12,6 +12,7 @@
 		942175701ACD9BE8000D9BBA /* CourseModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9421756E1ACD9BE8000D9BBA /* CourseModel.xcdatamodeld */; };
 		942175761ACD9C92000D9BBA /* Program.m in Sources */ = {isa = PBXBuildFile; fileRef = 942175751ACD9C92000D9BBA /* Program.m */; };
 		942175791ACD9CA1000D9BBA /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = 942175781ACD9CA1000D9BBA /* Course.m */; };
+		94943E5A1AEC133E007A81C5 /* WebSocketService.m in Sources */ = {isa = PBXBuildFile; fileRef = 94943E591AEC133E007A81C5 /* WebSocketService.m */; };
 		949A54A41AAD4F9F00FE6187 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 949A54A31AAD4F9F00FE6187 /* main.m */; };
 		949A54A71AAD4F9F00FE6187 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 949A54A61AAD4F9F00FE6187 /* AppDelegate.m */; };
 		949A54AA1AAD4F9F00FE6187 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 949A54A91AAD4F9F00FE6187 /* ViewController.m */; };
@@ -53,6 +54,8 @@
 		942175751ACD9C92000D9BBA /* Program.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Program.m; sourceTree = "<group>"; };
 		942175771ACD9CA1000D9BBA /* Course.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Course.h; sourceTree = "<group>"; };
 		942175781ACD9CA1000D9BBA /* Course.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Course.m; sourceTree = "<group>"; };
+		94943E581AEC133E007A81C5 /* WebSocketService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebSocketService.h; sourceTree = "<group>"; };
+		94943E591AEC133E007A81C5 /* WebSocketService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebSocketService.m; sourceTree = "<group>"; };
 		949A549E1AAD4F9F00FE6187 /* Course Explorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Course Explorer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		949A54A21AAD4F9F00FE6187 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		949A54A31AAD4F9F00FE6187 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -132,6 +135,8 @@
 				942175781ACD9CA1000D9BBA /* Course.m */,
 				94F7E1641AE8181A00A0BD91 /* SocketService.h */,
 				94F7E1651AE8181A00A0BD91 /* SocketService.m */,
+				94943E581AEC133E007A81C5 /* WebSocketService.h */,
+				94943E591AEC133E007A81C5 /* WebSocketService.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -375,6 +380,7 @@
 				949A54A71AAD4F9F00FE6187 /* AppDelegate.m in Sources */,
 				94D905061AD8390000287CAD /* AddNoteController.m in Sources */,
 				94D905091AD841C800287CAD /* CloudNavController.m in Sources */,
+				94943E5A1AEC133E007A81C5 /* WebSocketService.m in Sources */,
 				9421756A1ACD9B26000D9BBA /* ProgramModel.xcdatamodeld in Sources */,
 				949A54A41AAD4F9F00FE6187 /* main.m in Sources */,
 			);

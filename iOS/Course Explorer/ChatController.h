@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-#import "SocketService.h"
+#import "WebSocketService.h"
 
 @interface ChatController : UIViewController<UITableViewDataSource, UITextFieldDelegate>
 
 @property (nonatomic, retain) UIAlertView* alert;
-@property (nonatomic, retain) SocketService* service;
+@property (nonatomic, retain) WebSocketService* service;
 @property (nonatomic, retain) NSString* name;
 
 @property (weak, nonatomic) IBOutlet UITableView* tableView;
