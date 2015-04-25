@@ -16,7 +16,6 @@
 - (id) initWithDelegate:(id)delegate;
 - (void) connect;
 - (void) send:(NSString*)message;
-- (NSString*) receive;
 - (void) disconnect;
 
 - (void)socketService:(SocketService*)client didReceive:(NSString*)message;

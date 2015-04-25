@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChatJoinController : UIViewController
+@interface ChatJoinController : UIViewController<UITextFieldDelegate>
 
 @property (nonatomic, retain) UIAlertView* alert;
 @property (nonatomic, retain) NSString* name;

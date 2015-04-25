@@ -10,7 +10,7 @@
 
 #import "SocketService.h"
 
-@interface ChatController : UIViewController<UITableViewDataSource>
+@interface ChatController : UIViewController<UITableViewDataSource, UITextFieldDelegate>
 
 @property (nonatomic, retain) UIAlertView* alert;
 @property (nonatomic, retain) SocketService* service;

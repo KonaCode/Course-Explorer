@@ -52,6 +52,7 @@
    // Do any additional setup after loading the view.
    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"ChatMessageCell"];
    [self.tableView setDataSource:self];
+   self.messageEdit.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,8 +66,7 @@
 {
    [super viewWillAppear:animated];
    
-   [self.service connect];
-   [self.service send:[[NSString alloc] initWithFormat:@"%@ has joined", self.name]];
+   [self.service send:[[NSString alloc] initWithFormat:@"*** %@ has joined ***", self.name]];
    [self.tableView reloadData];
 }
 
@@ -74,6 +74,7 @@
 {
    [super viewWillDisappear:animated];
    
+   [self.service send:[[NSString alloc] initWithFormat:@"*** %@ has left ***", self.name]];
    [self.service disconnect];
 }
 
@@ -89,14 +90,28 @@
    else
    {
       [self.service send:[[NSString alloc] initWithFormat:@"%@: %@", self.name, message]];
-      [self.tableView reloadData];
       [self.messageEdit setText:@""];
+      [self.tableView reloadData];
    }
 }
 
 - (void)socketService:(SocketService*)service didReceive:(NSString*)message
 {
    [self.tableView reloadData];
+}
+
+#pragma mark - Text edit delegate methods
+
+- (BOOL) textFieldShouldReturn:(UITextField*)textField
+{
+   BOOL result = YES;
+   
+   if(result)
+   {
+      [self sendMessage:nil];
+   }
+
+   return result;
 }
 
 #pragma mark - Table view data source

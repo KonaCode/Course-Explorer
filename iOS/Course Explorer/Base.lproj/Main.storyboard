@@ -366,6 +366,8 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="sendMessage:" destination="YAI-jU-bPt" eventType="touchUpInside" id="nMC-Rn-Gti"/>
+                                    <action selector="startChat:" destination="YAI-jU-bPt" eventType="touchUpInside" id="pgD-tC-Haf"/>
                                     <segue destination="7t0-31-XN3" kind="presentation" identifier="joinChat" id="oTU-24-dcB"/>
                                 </connections>
                             </button>
