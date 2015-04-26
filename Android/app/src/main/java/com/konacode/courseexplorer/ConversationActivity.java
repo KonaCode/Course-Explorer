@@ -53,7 +53,7 @@ public class ConversationActivity extends Activity
       mTextView = (TextView)findViewById(R.id.chat_response_view_id);
 
       ReceiveTask task = new ReceiveTask(mAddress, mPort);
-      task.execute();
+      task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
       Button send = (Button) findViewById(R.id.chat_send_button_id);
 
@@ -65,7 +65,7 @@ public class ConversationActivity extends Activity
             String message = mMessageEdit.getText().toString();
             SendTask task = new SendTask(mAddress, mPort, message);
 
-            task.execute();
+            task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
          }
       });
    }
@@ -119,6 +119,7 @@ public class ConversationActivity extends Activity
    {
       String mAddress;
       int mPort;
+      String mResponse;
 
       ReceiveTask(String pAddress, int pPort)
       {
@@ -143,7 +144,7 @@ public class ConversationActivity extends Activity
 
             while(socket.isConnected())
             {
-               String response = "";
+               mResponse = null;
                InputStream inputStream = socket.getInputStream();
 
                // inputStream.read() will block if no data return
@@ -151,10 +152,10 @@ public class ConversationActivity extends Activity
                {
                   byteArrayOutputStream.write(buffer, 0, bytesRead);
 
-                  response += byteArrayOutputStream.toString("UTF-8");
+                  mResponse = byteArrayOutputStream.toString("UTF-8");
                }
 
-               mTextView.append(response);
+               publishProgress();
             }
          }
          catch(UnknownHostException pException)
@@ -188,9 +189,14 @@ public class ConversationActivity extends Activity
       }
 
       @Override
-      protected void onPostExecute(Void pResult)
+      protected void onProgressUpdate(Void... pValues)
       {
-         super.onPostExecute(pResult);
+         super.onProgressUpdate(pValues);
+
+         if(mResponse != null)
+         {
+            mTextView.append(String.format("Response: %s", mResponse));
+         }
       }
    }
 
@@ -204,6 +210,7 @@ public class ConversationActivity extends Activity
       {
          mAddress = pAddress;
          mPort = pPort;
+         mMessage = pMessage;
       }
 
       @Override
@@ -211,7 +218,6 @@ public class ConversationActivity extends Activity
       {
          InetAddress server = null;
          Socket socket = null;
-         BufferedReader in = null;
          PrintWriter out = null;
 
          try
@@ -225,16 +231,9 @@ public class ConversationActivity extends Activity
 
             if(socket.isConnected())
             {
-               mTextView.append(mMessage);
-
-               in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
 
                out.write(mMessage);
-
-               String response = in.readLine();
-
-               mTextView.append(response);
             }
          }
          catch(UnknownHostException pException)
@@ -256,18 +255,6 @@ public class ConversationActivity extends Activity
                try
                {
                   socket.close();
-               }
-               catch(IOException pException)
-               {
-                  pException.printStackTrace();
-               }
-            }
-
-            if(in != null)
-            {
-               try
-               {
-                  in.close();
                }
                catch(IOException pException)
                {
@@ -295,6 +282,8 @@ public class ConversationActivity extends Activity
       protected void onPostExecute(Void pResult)
       {
          super.onPostExecute(pResult);
+
+         mTextView.append(String.format("Sent: %s", mMessage));
       }
    }
 }

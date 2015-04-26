@@ -220,6 +220,7 @@ public class TaskProcessorService extends Service
          }
       }
    }
+
    public class AsyncServiceTask extends AsyncTask<Void, Void, Boolean>
    {
       private final Bundle mExtras;
