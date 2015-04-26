@@ -5,3 +5,5 @@ platform :ios, '7.0'
 #pod 'AFNetworking'
 pod 'RestKit', '~> 0.24'
 
+pod 'SocketRocket'
+

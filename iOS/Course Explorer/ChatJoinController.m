@@ -15,18 +15,6 @@
 
 @implementation ChatJoinController
 
-- (void)viewDidLoad
-{
-   [super viewDidLoad];
-   // Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning
-{
-   [super didReceiveMemoryWarning];
-   // Dispose of any resources that can be recreated.
-}
-
 - (UIAlertView*)alert
 {
    if(!_alert)
@@ -47,11 +35,40 @@
    return _name;
 }
 
-- (IBAction)exitHere:(UIStoryboardSegue*)sender
+- (void)viewDidLoad
 {
+   [super viewDidLoad];
+
+   // Do any additional setup after loading the view.
+   self.nameEdit.delegate = self;
+}
+
+- (void)didReceiveMemoryWarning
+{
+   [super didReceiveMemoryWarning];
+
+   // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Text edit delegate methods
+
+- (BOOL) textFieldShouldReturn:(UITextField*)textField
+{
+   BOOL result = YES;
+   
+   if(result && [self shouldPerformSegueWithIdentifier:@"joinChat" sender:self])
+   {
+      [self performSegueWithIdentifier:@"joinChat" sender:self];
+   }
+   
+   return result;
 }
 
 #pragma mark - Navigation
+
+- (IBAction)exitHere:(UIStoryboardSegue*)sender
+{
+}
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {

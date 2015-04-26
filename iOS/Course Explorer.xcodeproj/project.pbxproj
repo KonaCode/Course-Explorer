@@ -12,6 +12,7 @@
 		942175701ACD9BE8000D9BBA /* CourseModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9421756E1ACD9BE8000D9BBA /* CourseModel.xcdatamodeld */; };
 		942175761ACD9C92000D9BBA /* Program.m in Sources */ = {isa = PBXBuildFile; fileRef = 942175751ACD9C92000D9BBA /* Program.m */; };
 		942175791ACD9CA1000D9BBA /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = 942175781ACD9CA1000D9BBA /* Course.m */; };
+		94943E5A1AEC133E007A81C5 /* WebSocketService.m in Sources */ = {isa = PBXBuildFile; fileRef = 94943E591AEC133E007A81C5 /* WebSocketService.m */; };
 		949A54A41AAD4F9F00FE6187 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 949A54A31AAD4F9F00FE6187 /* main.m */; };
 		949A54A71AAD4F9F00FE6187 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 949A54A61AAD4F9F00FE6187 /* AppDelegate.m */; };
 		949A54AA1AAD4F9F00FE6187 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 949A54A91AAD4F9F00FE6187 /* ViewController.m */; };
@@ -24,6 +25,7 @@
 		949A54CF1AAD5BA200FE6187 /* ProgramsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 949A54CE1AAD5BA200FE6187 /* ProgramsController.m */; };
 		949FA33E1AD392C400FBBF04 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 949FA33D1AD392C400FBBF04 /* Social.framework */; };
 		949FA3411AD3981400FBBF04 /* SocialMediaController.m in Sources */ = {isa = PBXBuildFile; fileRef = 949FA3401AD3981400FBBF04 /* SocialMediaController.m */; };
+		94AA4B261AEA8E65004AA74D /* libPods-SocketRocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94AA4B251AEA8E65004AA74D /* libPods-SocketRocket.a */; };
 		94D905031AD8323400287CAD /* CloudController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D905021AD8323400287CAD /* CloudController.m */; };
 		94D905061AD8390000287CAD /* AddNoteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D905051AD8390000287CAD /* AddNoteController.m */; };
 		94D905091AD841C800287CAD /* CloudNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D905081AD841C800287CAD /* CloudNavController.m */; };
@@ -52,6 +54,8 @@
 		942175751ACD9C92000D9BBA /* Program.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Program.m; sourceTree = "<group>"; };
 		942175771ACD9CA1000D9BBA /* Course.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Course.h; sourceTree = "<group>"; };
 		942175781ACD9CA1000D9BBA /* Course.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Course.m; sourceTree = "<group>"; };
+		94943E581AEC133E007A81C5 /* WebSocketService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebSocketService.h; sourceTree = "<group>"; };
+		94943E591AEC133E007A81C5 /* WebSocketService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebSocketService.m; sourceTree = "<group>"; };
 		949A549E1AAD4F9F00FE6187 /* Course Explorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Course Explorer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		949A54A21AAD4F9F00FE6187 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		949A54A31AAD4F9F00FE6187 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -74,6 +78,7 @@
 		949FA33D1AD392C400FBBF04 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		949FA33F1AD3981400FBBF04 /* SocialMediaController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialMediaController.h; sourceTree = "<group>"; };
 		949FA3401AD3981400FBBF04 /* SocialMediaController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialMediaController.m; sourceTree = "<group>"; };
+		94AA4B251AEA8E65004AA74D /* libPods-SocketRocket.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-SocketRocket.a"; path = "Pods/../build/Debug-iphoneos/libPods-SocketRocket.a"; sourceTree = "<group>"; };
 		94D905011AD8323400287CAD /* CloudController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloudController.h; sourceTree = "<group>"; };
 		94D905021AD8323400287CAD /* CloudController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloudController.m; sourceTree = "<group>"; };
 		94D905041AD8390000287CAD /* AddNoteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNoteController.h; sourceTree = "<group>"; };
@@ -93,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94AA4B261AEA8E65004AA74D /* libPods-SocketRocket.a in Frameworks */,
 				949FA33E1AD392C400FBBF04 /* Social.framework in Frameworks */,
 				2E5581C1C1B0B87EB96D0D6B /* libPods.a in Frameworks */,
 			);
@@ -111,6 +117,7 @@
 		9175D289A165114935867646 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				94AA4B251AEA8E65004AA74D /* libPods-SocketRocket.a */,
 				949FA33D1AD392C400FBBF04 /* Social.framework */,
 				384393720E58FA9311BF0FC4 /* libPods.a */,
 			);
@@ -128,6 +135,8 @@
 				942175781ACD9CA1000D9BBA /* Course.m */,
 				94F7E1641AE8181A00A0BD91 /* SocketService.h */,
 				94F7E1651AE8181A00A0BD91 /* SocketService.m */,
+				94943E581AEC133E007A81C5 /* WebSocketService.h */,
+				94943E591AEC133E007A81C5 /* WebSocketService.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -371,6 +380,7 @@
 				949A54A71AAD4F9F00FE6187 /* AppDelegate.m in Sources */,
 				94D905061AD8390000287CAD /* AddNoteController.m in Sources */,
 				94D905091AD841C800287CAD /* CloudNavController.m in Sources */,
+				94943E5A1AEC133E007A81C5 /* WebSocketService.m in Sources */,
 				9421756A1ACD9B26000D9BBA /* ProgramModel.xcdatamodeld in Sources */,
 				949A54A41AAD4F9F00FE6187 /* main.m in Sources */,
 			);
@@ -498,7 +508,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Course Explorer/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -509,7 +524,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Course Explorer/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
