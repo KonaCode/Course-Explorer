@@ -65,9 +65,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
    [super viewWillAppear:animated];
-   
-   [self.service send:[[NSString alloc] initWithFormat:@"*** %@ has joined ***", self.name]];
-   [self.tableView reloadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -93,6 +90,12 @@
       [self.messageEdit setText:@""];
       [self.tableView reloadData];
    }
+}
+
+- (void)webSocketService:isReady
+{
+   [self.service send:[[NSString alloc] initWithFormat:@"*** %@ has joined ***", self.name]];
+   [self.tableView reloadData];
 }
 
 - (void)webSocketService:(WebSocketService*)service didReceive:(NSString*)message

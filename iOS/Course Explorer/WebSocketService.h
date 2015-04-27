@@ -20,7 +20,7 @@
 - (void) send:(NSString*)message;
 - (void) disconnect;
 
-- (void)webSocketService:(WebSocketService*)client isReady:(NSString*)message;
+- (void)webSocketService:isReady;
 - (void)webSocketService:(WebSocketService*)client didReceive:(NSString*)message;
 
 @end

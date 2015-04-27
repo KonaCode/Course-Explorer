@@ -62,7 +62,7 @@ NSString* serviceURL = @"ws://www.regisscis.net:80/WebSocketServer/chat";
 
    if(result && [self.delegate respondsToSelector:@selector(webSocketService:isReady:)])
    {
-      [self.delegate webSocketService:self isReady:];
+      [self.delegate isReady];
    }
 }
 
@@ -81,11 +81,16 @@ NSString* serviceURL = @"ws://www.regisscis.net:80/WebSocketServer/chat";
    NSString* output = (NSString*)message;
    BOOL result = (output != nil);
 
-   NSLog(@"WebSocket received: %@", message);
+   if([output length] == 0)
+   {
+      output = @"<empty>";
+   }
+   
+   NSLog(@"WebSocket received: %@", output);
 
    if(result)
    {
-      [self.messages addObject:output];
+      [self.messages addObject:[[NSString alloc] initWithFormat:@"Received: %@", output]];
    }
 
    if(result && [self.delegate respondsToSelector:@selector(webSocketService:didReceive:)])
