@@ -26,12 +26,18 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import de.tavendo.autobahn.*;
+
 public class ConversationActivity extends Activity
 {
+   final String mTag = "ConversationActivity";
+
    String mAddress;
    int mPort;
    EditText mMessageEdit;
    TextView mTextView;
+
+   WebSocketConnection mConnection;
 
    @Override
    protected void onCreate(Bundle savedInstanceState)
@@ -51,9 +57,9 @@ public class ConversationActivity extends Activity
 
       mMessageEdit = (EditText)findViewById(R.id.chat_edit_id);
       mTextView = (TextView)findViewById(R.id.chat_response_view_id);
+      mConnection = new WebSocketConnection();
 
-      ReceiveTask task = new ReceiveTask(mAddress, mPort);
-      task.execute();
+      connect();
 
       Button send = (Button) findViewById(R.id.chat_send_button_id);
 
@@ -63,9 +69,8 @@ public class ConversationActivity extends Activity
          public void onClick(View pView)
          {
             String message = mMessageEdit.getText().toString();
-            SendTask task = new SendTask(mAddress, mPort, message);
 
-            task.execute();
+            mConnection.sendTextMessage(String.format("Sending: %s", message));
          }
       });
    }
@@ -115,186 +120,44 @@ public class ConversationActivity extends Activity
       return result;
    }
 
-   public class ReceiveTask extends AsyncTask<Void, Void, Void>
+   private void connect()
    {
-      String mAddress;
-      int mPort;
+      final String connectionURI = "ws://www.regisscis.net:80/WebSocketServer/chat";
 
-      ReceiveTask(String pAddress, int pPort)
+      try
       {
-         mAddress = pAddress;
-         mPort = pPort;
+         mConnection.connect(connectionURI, new WebSocketHandler()
+         {
+            @Override
+            public void onOpen()
+            {
+               Log.i(mTag, "Status: Opened Connection " + connectionURI);
+
+               super.onOpen();
+               mConnection.sendTextMessage("Hello!");
+            }
+
+            @Override
+            public void onClose(int code, String reason)
+            {
+               Log.i(mTag, "Status: Closed Connection " + connectionURI);
+
+               super.onClose(code, reason);
+            }
+
+            @Override
+            public void onTextMessage(String payload)
+            {
+               Log.i(mTag, "Received Message: " + payload);
+
+               super.onTextMessage(payload);
+               mTextView.append(String.format("Response: %s", payload));
+            }
+         });
       }
-
-      @Override
-      protected Void doInBackground(Void... pArguments)
+      catch(WebSocketException pException)
       {
-         InetAddress server = null;
-         Socket socket = null;
-
-         try
-         {
-            server = InetAddress.getByName(mAddress);
-            socket = new Socket(server, mPort);
-
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(1024);
-            byte[] buffer = new byte[1024];
-            int bytesRead = 0;
-
-            while(socket.isConnected())
-            {
-               String response = "";
-               InputStream inputStream = socket.getInputStream();
-
-               // inputStream.read() will block if no data return
-               for(bytesRead = 0; (bytesRead = inputStream.read(buffer)) != -1; )
-               {
-                  byteArrayOutputStream.write(buffer, 0, bytesRead);
-
-                  response += byteArrayOutputStream.toString("UTF-8");
-               }
-
-               mTextView.append(response);
-            }
-         }
-         catch(UnknownHostException pException)
-         {
-            pException.printStackTrace();
-
-            Log.i("conversation", "UnknownHostException: " + pException.toString());
-         }
-         catch(IOException pException)
-         {
-            pException.printStackTrace();
-
-            Log.i("conversation", "IOException: " + pException.toString());
-         }
-         finally
-         {
-            if(socket != null)
-            {
-               try
-               {
-                  socket.close();
-               }
-               catch(IOException pException)
-               {
-                  pException.printStackTrace();
-               }
-            }
-         }
-
-         return null;
-      }
-
-      @Override
-      protected void onPostExecute(Void pResult)
-      {
-         super.onPostExecute(pResult);
-      }
-   }
-
-   public class SendTask extends AsyncTask<Void, Void, Void>
-   {
-      String mAddress;
-      int mPort;
-      String mMessage;
-
-      SendTask(String pAddress, int pPort, String pMessage)
-      {
-         mAddress = pAddress;
-         mPort = pPort;
-      }
-
-      @Override
-      protected Void doInBackground(Void... pArguments)
-      {
-         InetAddress server = null;
-         Socket socket = null;
-         BufferedReader in = null;
-         PrintWriter out = null;
-
-         try
-         {
-            server = InetAddress.getByName(mAddress);
-            socket = new Socket(server, mPort);
-
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(1024);
-            byte[] buffer = new byte[1024];
-            int bytesRead = 0;
-
-            if(socket.isConnected())
-            {
-               mTextView.append(mMessage);
-
-               in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-               out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
-
-               out.write(mMessage);
-
-               String response = in.readLine();
-
-               mTextView.append(response);
-            }
-         }
-         catch(UnknownHostException pException)
-         {
-            pException.printStackTrace();
-
-            Log.i("conversation", "UnknownHostException: " + pException.toString());
-         }
-         catch(IOException pException)
-         {
-            pException.printStackTrace();
-
-            Log.i("conversation", "IOException: " + pException.toString());
-         }
-         finally
-         {
-            if(socket != null)
-            {
-               try
-               {
-                  socket.close();
-               }
-               catch(IOException pException)
-               {
-                  pException.printStackTrace();
-               }
-            }
-
-            if(in != null)
-            {
-               try
-               {
-                  in.close();
-               }
-               catch(IOException pException)
-               {
-                  pException.printStackTrace();
-               }
-            }
-
-            if(out != null)
-            {
-               try
-               {
-                  out.close();
-               }
-               catch(Exception pException)
-               {
-                  pException.printStackTrace();
-               }
-            }
-         }
-
-         return null;
-      }
-
-      @Override
-      protected void onPostExecute(Void pResult)
-      {
-         super.onPostExecute(pResult);
+         Log.i(mTag, "Web Socket Exception: " + pException.toString());
       }
    }
 }
