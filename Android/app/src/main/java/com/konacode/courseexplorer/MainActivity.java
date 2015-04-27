@@ -140,6 +140,11 @@ public class MainActivity extends Activity implements ActionBar.OnNavigationList
             Toast.makeText(context, "Showing Social Media", Toast.LENGTH_SHORT).show();
             break;
          case 4:
+            // Chat
+            intent = new Intent(context, ChatActivity.class);
+            Toast.makeText(context, "Showing Chat", Toast.LENGTH_SHORT).show();
+            break;
+         case 5:
             // About
             intent = new Intent(context, AboutActivity.class);
             Toast.makeText(context, "Showing About", Toast.LENGTH_SHORT).show();
